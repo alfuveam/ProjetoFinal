@@ -9,11 +9,7 @@ public class Funcionario extends Pessoa {
     private String conta;
     private int id;
 
-    public Funcionario(String ctps, String senha, String conta, String nome, Date dataNasci, String rg, String cpf, String endereco, String telefone, String celular, int id) {
-        super(nome, dataNasci, rg, cpf, endereco, telefone, celular);
-        this.ctps = ctps;
-        this.senha = senha;
-        this.conta = conta;
+    public Funcionario() {
     }
 
     public String getConta() {

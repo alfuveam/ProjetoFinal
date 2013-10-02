@@ -5,16 +5,14 @@ import br.com.modelo.pessoa.Fornecedor;
 import br.com.modelo.pessoa.Funcionario;
 
 public class Compra {
+
     private Cheque cheque;
     private ContaCorrente contaCorrente;
     private Cliente cliente;
     private Fornecedor fornecedor;
     private Funcionario funcionario;
 
-    public Compra(Cliente cliente, Fornecedor fornecedor, Funcionario funcionario) {
-        this.cliente = cliente;
-        this.fornecedor = fornecedor;
-        this.funcionario = funcionario;
+    public Compra() {
     }
 
     public Cheque getCheque() {
@@ -56,11 +54,9 @@ public class Compra {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-    
+
     @Override
     public String toString() {
         return "Compra{" + "cheque=" + cheque + ", contaCorrente=" + contaCorrente + ", cliente=" + cliente + ", fornecedor=" + fornecedor + ", funcionario=" + funcionario + '}';
     }
-    
-    
- }
+}

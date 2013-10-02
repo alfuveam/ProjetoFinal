@@ -1,19 +1,15 @@
-
 package br.com.modelo.financeiro;
 
 import br.com.modelo.pessoa.Pessoa;
 
 public class Venda {
+
     private Cheque cheque;
     private ContaCorrente contaCorrente;
     private Pessoa pessoa;
     private int id;
 
-    public Venda(Cheque cheque, ContaCorrente contaCorrente, Pessoa pessoa, int id) {
-        this.cheque = cheque;
-        this.contaCorrente = contaCorrente;
-        this.pessoa = pessoa;
-        this.id = id;
+    public Venda() {
     }
 
     public Cheque getCheque() {
@@ -48,10 +44,8 @@ public class Venda {
         this.id = id;
     }
 
-    
     @Override
     public String toString() {
         return "Venda{" + "cheque=" + cheque + ", contaCorrente=" + contaCorrente + ", pessoa=" + pessoa + ", id=" + id + '}';
     }
-    
 }

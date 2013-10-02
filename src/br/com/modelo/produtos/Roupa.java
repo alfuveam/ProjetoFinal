@@ -9,14 +9,7 @@ public class Roupa {
     private int quant;
     private int id;
 
-    public Roupa(double tamanhoNum, String tamanhoLetra, String modeloRoupa, String tipoModelo, int quant, int id, String nome) {
-        this.tamanhoNum = tamanhoNum;
-        this.tamanhoLetra = tamanhoLetra;
-        this.modeloRoupa = modeloRoupa;
-        this.tipoModelo = tipoModelo;
-        this.quant = quant;
-        this.id = id;
-        this.nome = nome;
+    public Roupa() {
     }
 
     public int getId() {

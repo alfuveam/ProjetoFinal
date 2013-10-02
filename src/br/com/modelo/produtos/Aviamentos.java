@@ -7,11 +7,7 @@ public class Aviamentos {
     private String nome;
     private int id;
 
-    public Aviamentos(int quantidade, String modelo, String nome, int id) {
-        this.quantidade = quantidade;
-        this.modelo = modelo;
-        this.nome = nome;
-        this.id = id;
+    public Aviamentos() {
     }
 
     @Override

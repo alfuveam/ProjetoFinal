@@ -8,8 +8,7 @@ public class Cliente extends Pessoa {
     private ContaCorrente contaCorrente;
     private int id;
 
-    public Cliente(String nome, Date dataNasci, String rg, String cpf, String endereco, String telefone, String celular, int id) {
-        super(nome, dataNasci, rg, cpf, endereco, telefone, celular);
+    public Cliente() {
     }
 
     @Override

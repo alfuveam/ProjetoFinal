@@ -1,9 +1,9 @@
-
 package br.com.modelo.produtos;
 
 import java.util.Date;
 
 public class MateriaPrima {
+
     private String modelo;
     private int quantidade;
     private String cor;
@@ -11,14 +11,7 @@ public class MateriaPrima {
     private Date horaEntrada;
     private int id;
 
-    public MateriaPrima(String modelo, int quantidade, String cor, double tamanho, Date horaEntrada, int id, String nome) {
-        this.modelo = modelo;
-        this.quantidade = quantidade;
-        this.cor = cor;
-        this.tamanho = tamanho;
-        this.horaEntrada = horaEntrada;
-        this.id = id;
-        this.nome = nome;
+    public MateriaPrima() {
     }
 
     public int getId() {
@@ -29,7 +22,7 @@ public class MateriaPrima {
         this.id = id;
     }
 
-        public Date getHoraEntrada() {
+    public Date getHoraEntrada() {
         return horaEntrada;
     }
 
@@ -44,9 +37,8 @@ public class MateriaPrima {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    
     private String nome;
-    
+
     public String getModelo() {
         return modelo;
     }
@@ -83,5 +75,4 @@ public class MateriaPrima {
     public String toString() {
         return "MateriaPrima{" + "modelo=" + modelo + ", quantidade=" + quantidade + ", cor=" + cor + ", tamanho=" + tamanho + ", horaEntrada=" + horaEntrada + ", id=" + id + ", nome=" + nome + '}';
     }
-
 }

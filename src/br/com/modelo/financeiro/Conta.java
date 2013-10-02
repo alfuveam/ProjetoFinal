@@ -1,17 +1,14 @@
 package br.com.modelo.financeiro;
 
 public class Conta {
-        private String nomeBanco;
-        private String nConta;
-        private String nAgencia;
-        private String nDigito;
-        private int id;
 
-    public Conta(int id, String nomeBanco, String nConta, String nAgencia, String nDigito) {
-        this.nomeBanco = nomeBanco;
-        this.nConta = nConta;
-        this.nAgencia = nAgencia;
-        this.nDigito = nDigito;
+    private String nomeBanco;
+    private String nConta;
+    private String nAgencia;
+    private String nDigito;
+    private int id;
+
+    public Conta() {
     }
 
     public int getId() {
@@ -58,7 +55,4 @@ public class Conta {
     public String toString() {
         return "Conta{" + "nomeBanco=" + nomeBanco + ", nConta=" + nConta + ", nAgencia=" + nAgencia + ", nDigito=" + nDigito + ", id=" + id + '}';
     }
-
-
-        
 }

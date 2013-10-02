@@ -11,14 +11,7 @@ public class Pessoa {
     private String endereco;
     private int id;
 
-    public Pessoa(String nome, Date dataNasci, String rg, String cpf, String endereco, String telefone, String celular) {
-        this.nome = nome;
-        this.dataNasci = dataNasci;
-        this.rg = rg;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.celular = celular;
+    public Pessoa() {
     }
 
     public String getEndereco() {
