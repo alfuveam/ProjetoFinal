@@ -10,6 +10,7 @@ public class Roupa {
     private int id;
 
     public Roupa() {
+        
     }
 
     public int getId() {
