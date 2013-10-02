@@ -7,6 +7,31 @@ public class Roupa{
     private String modeloRoupa;
     private String tipoModelo; //Moda Homen,Feminina,Infantil
     private int quant;
+
+    public Roupa(double tamanhoNum, String tamanhoLetra, String modeloRoupa, String tipoModelo, int quant, String nome) {
+        this.tamanhoNum = tamanhoNum;
+        this.tamanhoLetra = tamanhoLetra;
+        this.modeloRoupa = modeloRoupa;
+        this.tipoModelo = tipoModelo;
+        this.quant = quant;
+        this.nome = nome;
+    }
+
+    public int getQuant() {
+        return quant;
+    }
+
+    public void setQuant(int quant) {
+        this.quant = quant;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
     private String nome;
 
     public double getTamanhoNum() {
@@ -40,4 +65,10 @@ public class Roupa{
     public void setTipoModelo(String tipoModelo) {
         this.tipoModelo = tipoModelo;
     }
+
+    @Override
+    public String toString() {
+        return "Roupa{" + "tamanhoNum=" + tamanhoNum + ", tamanhoLetra=" + tamanhoLetra + ", modeloRoupa=" + modeloRoupa + ", tipoModelo=" + tipoModelo + ", quant=" + quant + ", nome=" + nome + '}';
+    }
+    
 }

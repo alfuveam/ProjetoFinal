@@ -6,12 +6,23 @@ public class Aviamentos {
     private String modelo;
     private String nome;
 
-    public int getQuantidade() {
-        return quantidade;
+    @Override
+    public String toString() {
+        return "Aviamentos{" + "quantidade=" + quantidade + ", modelo=" + modelo + ", nome=" + nome + '}';
+    }
+
+    public Aviamentos(int quantidade, String modelo, String nome) {
+        this.quantidade = quantidade;
+        this.modelo = modelo;
+        this.nome = nome;
     }
 
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
+    }
+    
+    public int getQuantidade() {
+        return quantidade;
     }
 
     public String getModelo() {

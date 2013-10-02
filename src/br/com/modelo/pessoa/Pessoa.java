@@ -9,7 +9,26 @@ public class Pessoa {
     private String rg;
     private String cpf;
     private String endereco;
+    private int id;
+    
+    public Pessoa(String nome, Date dataNasci, String rg, String cpf, String endereco, String telefone, String celular, int id) {
+        this.nome = nome;
+        this.dataNasci = dataNasci;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.celular = celular;
+        this.id = id;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
     
     public String getEndereco() {
         return endereco;
@@ -71,6 +90,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", telefone=" + telefone + ", celular=" + celular + '}';
+        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", id=" + id + ", telefone=" + telefone + ", celular=" + celular + '}';
     }
+
 }
