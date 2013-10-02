@@ -9,25 +9,8 @@ public class Pessoa {
     private String rg;
     private String cpf;
     private String endereco;
-    private String senha;
-    private String conta;
 
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-
-    public String getConta() {
-        return conta;
-    }
-
-    public void setConta(String conta) {
-        this.conta = conta;
-    }
-
+    
     public String getEndereco() {
         return endereco;
     }
