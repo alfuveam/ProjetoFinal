@@ -1,15 +1,14 @@
-
 package br.com.modelo.pessoa;
 
 import java.util.Date;
 
+public class Fornecedor extends Pessoa {
 
-public class Fornecedor extends Pessoa{
     private String cnpj;
     private int id;
 
     public Fornecedor(String nome, Date dataNasci, String rg, String cpf, String endereco, String telefone, String celular, int id) {
-        super(nome, dataNasci, rg, cpf, endereco, telefone, celular, id);
+        super(nome, dataNasci, rg, cpf, endereco, telefone, celular);
     }
 
     public String getCnpj() {
@@ -24,4 +23,4 @@ public class Fornecedor extends Pessoa{
     public String toString() {
         return "Fornecedor{" + "cnpj=" + cnpj + ", id=" + id + '}';
     }
-  }
+}

@@ -7,14 +7,24 @@ public class ContaCorrente extends Conta{
         private String nome; //É para verificar no banco de dados os valores armazenados
         private String valor;
         private Date dataPagamento;
+        private int id;
 
-    public ContaCorrente(String nome, String valor, Date dataPagamento, String nomeBanco, String nConta, String nAgencia, String nDigito) {
-        super(nomeBanco, nConta, nAgencia, nDigito);
+    public ContaCorrente(String nome, String valor, Date dataPagamento, int id, String nomeBanco, String nConta, String nAgencia, String nDigito) {
+        super(id, nomeBanco, nConta, nAgencia, nDigito);
         this.nome = nome;
         this.valor = valor;
         this.dataPagamento = dataPagamento;
+        this.id = id;
     }
-        
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -39,9 +49,8 @@ public class ContaCorrente extends Conta{
         this.dataPagamento = dataPagamento;
     }
 
-        @Override
+    @Override
     public String toString() {
-        return "ContaCorrente{" + "nome=" + nome + ", valor=" + valor + ", dataPagamento=" + dataPagamento + '}';
+        return "ContaCorrente{" + "nome=" + nome + ", valor=" + valor + ", dataPagamento=" + dataPagamento + ", id=" + id + '}';
     }
-        
     }

@@ -1,20 +1,30 @@
-
 package br.com.modelo.produtos;
 
-public class Roupa{
+public class Roupa {
+
     private double tamanhoNum;
     private String tamanhoLetra;
     private String modeloRoupa;
     private String tipoModelo; //Moda Homen,Feminina,Infantil
     private int quant;
+    private int id;
 
-    public Roupa(double tamanhoNum, String tamanhoLetra, String modeloRoupa, String tipoModelo, int quant, String nome) {
+    public Roupa(double tamanhoNum, String tamanhoLetra, String modeloRoupa, String tipoModelo, int quant, int id, String nome) {
         this.tamanhoNum = tamanhoNum;
         this.tamanhoLetra = tamanhoLetra;
         this.modeloRoupa = modeloRoupa;
         this.tipoModelo = tipoModelo;
         this.quant = quant;
+        this.id = id;
         this.nome = nome;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getQuant() {
@@ -68,7 +78,6 @@ public class Roupa{
 
     @Override
     public String toString() {
-        return "Roupa{" + "tamanhoNum=" + tamanhoNum + ", tamanhoLetra=" + tamanhoLetra + ", modeloRoupa=" + modeloRoupa + ", tipoModelo=" + tipoModelo + ", quant=" + quant + ", nome=" + nome + '}';
+        return "Roupa{" + "tamanhoNum=" + tamanhoNum + ", tamanhoLetra=" + tamanhoLetra + ", modeloRoupa=" + modeloRoupa + ", tipoModelo=" + tipoModelo + ", quant=" + quant + ", id=" + id + ", nome=" + nome + '}';
     }
-    
 }

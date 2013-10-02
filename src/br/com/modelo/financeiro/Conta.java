@@ -5,12 +5,21 @@ public class Conta {
         private String nConta;
         private String nAgencia;
         private String nDigito;
+        private int id;
 
-    public Conta(String nomeBanco, String nConta, String nAgencia, String nDigito) {
+    public Conta(int id, String nomeBanco, String nConta, String nAgencia, String nDigito) {
         this.nomeBanco = nomeBanco;
         this.nConta = nConta;
         this.nAgencia = nAgencia;
         this.nDigito = nDigito;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNomeBanco() {
@@ -47,7 +56,9 @@ public class Conta {
 
     @Override
     public String toString() {
-        return "Conta{" + "nomeBanco=" + nomeBanco + ", nConta=" + nConta + ", nAgencia=" + nAgencia + ", nDigito=" + nDigito + '}';
+        return "Conta{" + "nomeBanco=" + nomeBanco + ", nConta=" + nConta + ", nAgencia=" + nAgencia + ", nDigito=" + nDigito + ", id=" + id + '}';
     }
+
+
         
 }

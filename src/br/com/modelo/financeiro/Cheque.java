@@ -6,13 +6,22 @@ public class Cheque {
     private String nome;
     private Date dataAberturaConta;
     private String numeroCheque;
-
+    private int id;
+    
     public Cheque(String nome, Date dataAberturaConta, String numeroCheque) {
         this.nome = nome;
         this.dataAberturaConta = dataAberturaConta;
         this.numeroCheque = numeroCheque;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
     public String getNome() {
         return nome;
     }
@@ -39,8 +48,7 @@ public class Cheque {
 
     @Override
     public String toString() {
-        return "Cheque{" + "nome=" + nome + ", dataAberturaConta=" + dataAberturaConta + ", numeroCheque=" + numeroCheque + '}';
+        return "Cheque{" + "nome=" + nome + ", dataAberturaConta=" + dataAberturaConta + ", numeroCheque=" + numeroCheque + ", id=" + id + '}';
     }
-    
-    
+        
 }
