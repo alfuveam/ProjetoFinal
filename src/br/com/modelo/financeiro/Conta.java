@@ -6,6 +6,13 @@ public class Conta {
         private String nAgencia;
         private String nDigito;
 
+    public Conta(String nomeBanco, String nConta, String nAgencia, String nDigito) {
+        this.nomeBanco = nomeBanco;
+        this.nConta = nConta;
+        this.nAgencia = nAgencia;
+        this.nDigito = nDigito;
+    }
+
     public String getNomeBanco() {
         return nomeBanco;
     }
@@ -36,6 +43,11 @@ public class Conta {
 
     public void setnDigito(String nDigito) {
         this.nDigito = nDigito;
+    }
+
+    @Override
+    public String toString() {
+        return "Conta{" + "nomeBanco=" + nomeBanco + ", nConta=" + nConta + ", nAgencia=" + nAgencia + ", nDigito=" + nDigito + '}';
     }
         
 }
