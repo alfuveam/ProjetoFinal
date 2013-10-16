@@ -6,18 +6,18 @@ public class Funcionario extends Pessoa {
 
     private String ctps;
     private String senha;
-    private String conta;
-    private int id;
+    private String login;
+    private int id_funcionario;
 
     public Funcionario() {
     }
 
-    public String getConta() {
-        return conta;
+    public String getLogin() {
+        return login;
     }
 
-    public void setConta(String conta) {
-        this.conta = conta;
+    public void setConta(String login) {
+        this.login = login;
     }
 
     public String getCtps() {

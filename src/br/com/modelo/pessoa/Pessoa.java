@@ -9,7 +9,7 @@ public class Pessoa {
     private String rg;
     private String cpf;
     private String endereco;
-    private int id;
+    private int id_pessoa;
 
     public Pessoa() {
     }
@@ -74,6 +74,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", id=" + id + ", telefone=" + telefone + ", celular=" + celular + '}';
+        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", id=" + id_pessoa + ", telefone=" + telefone + ", celular=" + celular + '}';
     }
 }
