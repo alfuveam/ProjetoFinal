@@ -28,6 +28,22 @@ public class Funcionario extends Pessoa {
         this.ctps = ctps;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public int getId_funcionario() {
+        return id_funcionario;
+    }
+
+    public void setId_funcionario(int id_funcionario) {
+        this.id_funcionario = id_funcionario;
+    }
+
     @Override
     public String toString() {
         return "Funcionario{" + "ctps=" + ctps + '}';

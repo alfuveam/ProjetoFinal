@@ -5,13 +5,26 @@
 package br.com.felipeborges.dao;
 
 import br.com.modelo.pessoa.Funcionario;
+import java.awt.List;
 
 /**
  *
  * @author guest01
  */
-public class FuncionarioDAO {
+public interface FuncionarioDAO {
     
-    void inserir(Funcionario funcionario);
+     void inserir(Funcionario funcionario)
+     
+     void atualizar (Funcionario funcionario);
+     
+     void remover(int id);
+     
+     List<Funcionario> getfuncionario();
+     
+     List<Funcionario> getFuncionariobyNome(String nome);
+     
+     Funcionario getFuncionariobyId(int id);
+    }
+    
     
 }
