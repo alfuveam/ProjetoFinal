@@ -13,7 +13,7 @@ import java.awt.List;
  */
 public interface FuncionarioDAO {
     
-     void inserir(Funcionario funcionario)
+     void inserir(Funcionario funcionario);
      
      void atualizar (Funcionario funcionario);
      
@@ -25,6 +25,4 @@ public interface FuncionarioDAO {
      
      Funcionario getFuncionariobyId(int id);
     }
-    
-    
 }

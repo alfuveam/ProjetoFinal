@@ -2,11 +2,12 @@
 package br.com.felipeborges.dao;
 //Impotações
 import br.com.modelo.pessoa.Funcionario;
+import java.util.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,9 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
     private final String INSERT = "insert into funcionario(ctps, login, senha, login, nome, dataNasci, rg, cpf, endereco) values (?,?,?,?,?,?,?,?,?);";
     private final String UPDATE = "update funcionarios set ctps = ?, login = ?, senha = ?, nome = ?, dataNasci = ? , rg = ?, cpf = ? , endereco = ?";
+    private final String DELETE = "delete from funcionarios where id = ?;";
+    private final String LIST = "select * from Funcionario;";
+    private final String LIST_NOME = "select * from funcionario where nome like"
     /**
      * Método que faz a inserção de pessoas na base de dados
      *
@@ -59,7 +63,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
      */
     public void atualizar(Funcionario funcionario) {
         Connection conn = null;
-        if(funcionario ! = null){
+        if(funcionario != null){
         try{
             conn = ConnectionFactory.getConnection();
             PreparedStatement pstm = null;
@@ -89,17 +93,75 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
     @Override
     public void remover(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection conn = null;
+        try{
+            conn = ConnectionFactory.getConnection();
+            PreparedStatement pstm = null;
+            pstm = ConnectionFactory.getConnection().prepareStatement(DELETE);
+            String mensagem = "Você tem ceeza que deseja excluit este funcionario?";
+            String titulo = "Atenção!";
+            
+            int condicao = JOptionPane.showConfirmDialog(null, mensagem, titulo, JOptionPane.YES_NO_OPTION);
+            if(condicao == JOptionPane.YES_OPTION){
+                pstm.setInt(1,id);
+                pstm.execute();
+                JOptionPane.showMessageDialog(null, "O funcionario foi removido com sucesso!");
+                ConnectionFactory.closeConnection(conn, pstm);
+            }
+        }catch(SQLException e){
+            System.out.println("Erro ao deletar o funcionario no banco de dados\n" + e.getMessage());
+        }
+    }
+
+    
+    @Override
+    public List<Funcionario> getfuncionario() {
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        List<Funcionario> funcionarios = new ArrayList<>();
+        try{
+            conn = (Connection) ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(LIST);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                Funcionario f = new Funcionario();
+                f.setCelular(rs.getString("celular"));
+                f.setConta(rs.getString("login"));
+                f.setCpf(rs.getString("cpf"));
+                f.setCtps(rs.getString("ctps"));
+                f.setDataNasci(rs.getDate("dataNasci"));
+                f.setEndereco(rs.getString("endereco"));
+                f.setId_funcionario(rs.getInt("id_funcionario"));
+                f.setNome(rs.getString("nome"));
+                f.setRg(rs.getString("rg"));
+                f.setSenha(rs.getString("senha"));
+                f.setTelefone(rs.getString("telefone"));
+                
+                funcionarios.add(f);
+            }
+            ConnectionFactory.closeConnection(conn, pstm, rs);
+        } catch(SQLException e){
+            System.out.println("Erro ao listar pessoas: " + e.getMessage());
+        }
+        return funcionarios;
     }
 
     @Override
-    public Object getfuncionario() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object getFuncionariobyNome(String nome) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Funcionario> getFuncionariobyNome(String nome) {
+        Connection conn = null;
+        
+        PreparedStatement pstm = null;
+        
+        ResultSet rs;
+        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+        try{
+            conn = (Connection) ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(LIST_NOME);
+            pstm.setString(1, "%" + nome + "%");
+            rs = pstm.executeQuery();
+            
+        }
     }
 
     @Override
