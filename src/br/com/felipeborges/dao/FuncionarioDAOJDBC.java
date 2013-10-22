@@ -187,6 +187,6 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
     @Override
     public Funcionario getFuncionariobyId(int id) {
-        
+        return null;
     }
 }
