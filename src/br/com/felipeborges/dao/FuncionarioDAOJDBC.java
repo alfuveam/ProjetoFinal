@@ -23,6 +23,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     private final String DELETE = "delete from funcionarios where id = ?;";
     private final String LIST = "select * from Funcionario;";
     private final String LIST_NOME = "select * from funcionario where nome like ?";
+    private final String LIST_ID = "select * from funcionario where id = ?";
 
     /**
      * Método que faz a inserção de pessoas na base de dados
@@ -150,15 +151,13 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     }
 
     @Override
-    public List<Funcionario> getFuncionariobyNome(String nome) {
+    public List<Funcionario> FuncionariobyNome(String nome) {
         Connection conn = null;
-
         PreparedStatement pstm = null;
-
-        ResultSet rs;
-        List<Funcionario> funcionarios = new ArrayList<Funcionario>();
+        ResultSet rs = null;
+        List<Funcionario> funcionarios = new ArrayList<>();
         try {
-            conn = (Connection) ConnectionFactory.getConnection();
+            conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LIST_NOME);
             pstm.setString(1, "%" + nome + "%");
             rs = pstm.executeQuery();
@@ -178,15 +177,55 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 
                 funcionarios.add(f);
             }
-            ConnectionFactory.closeConnection(conn, pstm, rs);
-        }catch(SQLException e){
-            System.out.println("Erro ao listar funcionarios: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao pesquisar usuário" + e.getMessage());
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão" + e.getMessage());
+            }
         }
         return funcionarios;
     }
 
     @Override
     public Funcionario getFuncionariobyId(int id) {
-        return null;
+        Connection conn = null;
+        
+        PreparedStatement pstm = null;
+        
+        ResultSet rs = null;
+        
+        Funcionario f = new Funcionario();
+        try{
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(LIST_ID);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            while(rs.next()){
+                f.setCelular(rs.getString("celular"));
+                f.setConta(rs.getString("login"));
+                f.setCpf(rs.getString("cpf"));
+                f.setCtps(rs.getString("ctps"));
+                f.setDataNasci(rs.getDate("dataNasci"));
+                f.setEndereco(rs.getString("endereco"));
+                f.setId_funcionario(rs.getInt("id_funcionario"));
+                f.setNome(rs.getString("nome"));
+                f.setRg(rs.getString("rg"));
+                f.setSenha(rs.getString("senha"));
+                f.setTelefone(rs.getString("telefone"));
+            }
+            ConnectionFactory.closeConnection(conn, pstm, rs);
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "Erro ao listar pessoas: " + e.getMessage());
+        } finally{
+            try{
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            }catch(Exception e){
+                JOptionPane.showMessageDialog(null,"Erro ao fechar a conexão" + e.getMessage());
+            }
+        }
+        return f;
     }
 }

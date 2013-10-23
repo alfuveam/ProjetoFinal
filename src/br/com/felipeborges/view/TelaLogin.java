@@ -4,6 +4,8 @@
  */
 package br.com.felipeborges.view;
 
+import br.com.felipeborges.controller.FuncionarioController;
+
 /**
  *
  * @author guest01
@@ -151,7 +153,6 @@ public class TelaLogin extends javax.swing.JFrame {
         FuncionarioController fc = new FuncionarioController();
         TelaPrincipal tp = new TelaPrincipal();
         
-        TelaPrincipal tp = new TelaPrincipal();
         tp.setLocationRelativeTo(null);
         tp.setExtendedState(tp.MAXIMIZED_BOTH);
         tp.setVisible(true);

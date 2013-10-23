@@ -5,7 +5,7 @@
 package br.com.felipeborges.dao;
 
 import br.com.modelo.pessoa.Funcionario;
-import java.awt.List;
+import java.util.List;
 
 /**
  *
@@ -18,11 +18,11 @@ public interface FuncionarioDAO {
      void atualizar (Funcionario funcionario);
      
      void remover(int id);
-     
+     //type the list dont take parameters
      List<Funcionario> getfuncionario();
      
-     List<Funcionario> getFuncionariobyNome(String nome);
+     List<Funcionario> FuncionariobyNome(String nome);
      
      Funcionario getFuncionariobyId(int id);
     }
-}
+

@@ -8,11 +8,11 @@ public class FuncionarioController {
     
     public void inserir(Funcionario funcionario){
     FuncionarioDAO dao = new FuncionarioDAOJDBC();
-    dao.inserir(Funcionario);
+    dao.inserir(funcionario);
     }
     
     public void atualizar(Funcionario funcionario){
     FuncionarioDAO dao = new FuncionarioDAOJDBC();
-    dao.atualizar(Funcionario);
+    dao.atualizar(funcionario);
     }
 }
