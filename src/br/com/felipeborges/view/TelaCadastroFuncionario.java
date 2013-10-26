@@ -6,7 +6,6 @@ package br.com.felipeborges.view;
 
 import br.com.felipeborges.controller.FuncionarioController;
 import br.com.modelo.pessoa.Funcionario;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -302,11 +301,13 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         }
   
         FuncionarioController fc = new FuncionarioController();
-        int id = fc.atualizar(f);
+        int id = fc.salvar(f);
         if (id > 0) {
-                modelo.addRow(new Object[]{id, f.getCelular(), f.getCpf(), f.getCtps(), f.getDataNasci(), f.getEndereco(), f.getLogin(), f.getSenha(),
-                    f.getNome(), f.getRg(), f.getSexo(), f.getTelefone()});
-                JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
+                modelo.addRow(new Object[]{id, f.getCelular(), f.getCpf(), 
+                    f.getCtps(), f.getEndereco(),
+                    f.getLogin(),f.getNome(),f.getRg(), f.getSenha(),
+                    f.getSexo(), f.getTelefone(), f.getDataNasci()});
+                    JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
         }
     }//GEN-LAST:event_btConfirmarActionPerformed
 

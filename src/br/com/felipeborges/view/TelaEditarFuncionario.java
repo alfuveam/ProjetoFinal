@@ -149,11 +149,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
         jLabel3.setText("CPF:");
 
-        try {
-            txDataNascimentoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        txDataNascimentoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
         txDataNascimentoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txDataNascimentoFuncionarioActionPerformed(evt);
@@ -338,7 +334,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         }
         
         if(f.getId_funcionario() == 0){
-        int id = fc.atualizar(f);
+        int id = fc.salvar(f);
         if (id > 0) {
                 modelo.addRow(new Object[]{f.getCelular(), f.getCpf(), f.getCtps(), f.getDataNasci(), f.getEndereco(), f.getLogin(), f.getSenha(),
                     f.getNome(), f.getRg(), f.getSexo(), f.getTelefone()});
@@ -346,7 +342,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
             
         }
         }else{
-                int id = fc.atualizar(f);
+                int id = fc.salvar(f);
         if (id > 0) {
                 modelo.removeRow(linhaSelecionada);
                 modelo.addRow(new Object[]{f.getCelular(), f.getCpf(), f.getCtps(), f.getDataNasci(), f.getEndereco(), f.getLogin(), f.getSenha(),
@@ -354,7 +350,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
             }
         }
-        fc.atualizar(f);
+        fc.salvar(f);
     }//GEN-LAST:event_btConfirmarActionPerformed
 
     private void btLimparActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLimparActionPerformed

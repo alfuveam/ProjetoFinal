@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -27,22 +28,34 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     private final String LIST_ID = "select * from funcionario where id_funcionario = ?";
     private final String VERIFICALOGIN = "select login, senha from funcionario where login = ? and senha= ?";
 
-    /**
+     /**
      * Método que faz a inserção de pessoas na base de dados
+     * @param funcionario
+     * @return
+     */
+
+    @Override
+    public int salvar(Funcionario funcionario){
+        if(funcionario.getId_funcionario() == 0){
+            return inserir(funcionario);
+    }else{
+            return atualizar(funcionario);
+        }
+    }
+
+    /**
      *
      * @param funcionario
+     * @return
      */
-    
-    @Override
-    public void inserir(Funcionario funcionario) {
-        if (funcionario != null) {
+        
+    public int inserir(Funcionario funcionario) {
             Connection conn = null;
+            PreparedStatement pstm = null;            
+            int retorno = -1;
             try {
-
                 conn = ConnectionFactory.getConnection();
-                PreparedStatement pstm = null;
-                pstm = ConnectionFactory.getConnection().prepareStatement(INSERT);
-
+                pstm = ConnectionFactory.getConnection().prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
                 //Pega os dados que estão no objeto passado por parametro e coloca na instrução de retorno
                 pstm.setString(1, funcionario.getCelular());
                 pstm.setString(2, funcionario.getCpf());
@@ -58,17 +71,24 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
 
                 //Executa o comando sql
-
-                pstm.execute();
-                JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
-                ConnectionFactory.closeConnection(conn, pstm);
-            } catch (SQLException e) {
-                System.out.println("Erro ao enserir pessoa no banco de dados\n" + e.getMessage());
+                try (ResultSet rs = pstm.getGeneratedKeys()){
+                    if(rs.next()){
+                        retorno = rs.getInt(1);
+                    }
+                }
+            } catch(Exception e){
+                JOptionPane.showMessageDialog(null, "Erro ao enserir:" +e);
+            } finally{
+                try{
+                    ConnectionFactory.closeConnection(conn, pstm);
+                } catch(SQLException ex){
+                }
             }
+            return retorno;
         }
-    }
-    @Override
-    public int atualizar(Funcionario funcionario) {
+    
+    
+        public int atualizar(Funcionario funcionario) {
         Connection con = null;
         PreparedStatement pstm = null;
         int retorno = -1;
@@ -108,7 +128,9 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     /**
      * Método que faz a atualização de pessoas na base de dados
      *
+     * @param id
      * @param funcionario
+     * @return 
      */
 
     @Override
@@ -161,9 +183,14 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
                 funcionarios.add(f);
             }
-            ConnectionFactory.closeConnection(conn, pstm, rs);
-        } catch (SQLException e) {
-            System.out.println("Erro ao listar pessoas: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar as pessoas: " + e.getMessage());
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(conn, pstm, rs);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar conexão: " + e.getMessage());
+            }
         }
         return funcionarios;
     }
@@ -210,11 +237,8 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     @Override
     public Funcionario getFuncionariobyId(int id) {
         Connection conn = null;
-
         PreparedStatement pstm = null;
-
         ResultSet rs = null;
-
         Funcionario f = new Funcionario();
         try {
             conn = ConnectionFactory.getConnection();
@@ -234,9 +258,8 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
             }
-            ConnectionFactory.closeConnection(conn, pstm, rs);
-        } catch (SQLException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao listar pessoas: " + e.getMessage());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao listar o usuário" + e.getMessage());
         } finally {
             try {
                 ConnectionFactory.closeConnection(conn, pstm, rs);
@@ -272,4 +295,6 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
         }
         return autenticado;
     }
+
+
 }

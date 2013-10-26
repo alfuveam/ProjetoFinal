@@ -234,8 +234,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         modelo.addColumn("Endereco");
         modelo.addColumn("Celular");
         modelo.addColumn("Telefone");
-
-
+        
         tabela.getColumnModel().getColumn(0).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(1).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(2).setPreferredWidth(40);

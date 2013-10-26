@@ -8,14 +8,9 @@ import javax.swing.JOptionPane;
 
 public class FuncionarioController {
 
-    public void inserir(Funcionario funcionario) {
+    public int salvar(Funcionario funcionario) {
         FuncionarioDAO dao = new FuncionarioDAOJDBC();
-        dao.inserir(funcionario);
-    }
-
-    public int atualizar(Funcionario funcionario) {
-        FuncionarioDAO dao = new FuncionarioDAOJDBC();
-        return dao.atualizar(funcionario);
+        return dao.salvar(funcionario);
     }
 
     public boolean remover(int id) {

@@ -12,10 +12,8 @@ import java.util.List;
  * @author guest01
  */
 public interface FuncionarioDAO {
-     void inserir(Funcionario funcionario);
-     
-     int atualizar (Funcionario funcionario);
-     
+     int salvar(Funcionario funcionario);
+
      boolean remover(int id);
      //type the list dont take parameters
      List<Funcionario> getfuncionario();
