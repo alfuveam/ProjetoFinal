@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
+
 /**
  * Classe que implementa os métodos CRUD da interface FuncionarioDAO
  *
@@ -18,18 +19,21 @@ import javax.swing.JOptionPane;
  */
 public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
-    private final String INSERT = "insert into funcionario(ctps, login, senha, login, nome, dataNasci, rg, cpf, endereco) values (?,?,?,?,?,?,?,?,?);";
-    private final String UPDATE = "update funcionarios set ctps = ?, login = ?, senha = ?, nome = ?, dataNasci = ? , rg = ?, cpf = ? , endereco = ?";
-    private final String DELETE = "delete from funcionarios where id = ?;";
+    private final String INSERT = "insert into funcionario(celular, cpf, ctps, endereco, login, nome, rg, senha, sexo, telefone, dataNasci) values (?,?,?,?,?,?,?,?,?,?,?);";
+    private final String UPDATE = "update funcionario set celular = ?, cpf = ?, ctps = ?, endereco = ?, login = ?, nome = ?, rg = ?, senha = ?, sexo = ?, telefone = ?, dataNasci = ? where id_funcionario = ?";
+    private final String DELETE = "delete from funcionario where id_funcionario = ?;";
     private final String LIST = "select * from Funcionario;";
     private final String LIST_NOME = "select * from funcionario where nome like ?";
-    private final String LIST_ID = "select * from funcionario where id = ?";
+    private final String LIST_ID = "select * from funcionario where id_funcionario = ?";
+    private final String VERIFICALOGIN = "select login, senha from funcionario where login = ? and senha= ?";
 
     /**
      * Método que faz a inserção de pessoas na base de dados
      *
      * @param funcionario
      */
+    
+    @Override
     public void inserir(Funcionario funcionario) {
         if (funcionario != null) {
             Connection conn = null;
@@ -40,39 +44,6 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 pstm = ConnectionFactory.getConnection().prepareStatement(INSERT);
 
                 //Pega os dados que estão no objeto passado por parametro e coloca na instrução de retorno
-                pstm.setString(1, funcionario.getCpf());
-                pstm.setString(2, funcionario.getCtps());
-                pstm.setString(3, funcionario.getRg());
-                pstm.setDate(4, new java.sql.Date(funcionario.getDataNasci().getTime()));
-                pstm.setString(6, funcionario.getLogin());
-                pstm.setString(7, funcionario.getSenha());
-                pstm.setString(8, funcionario.getNome());
-                pstm.setString(9, funcionario.getEndereco());
-
-                //Executa o comando sql
-
-                pstm.executeQuery();
-                JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
-                ConnectionFactory.closeConnection(conn, pstm);
-            } catch (SQLException e) {
-                System.out.println("Erro ao enserir pessoa no banco de dados\n" + e.getMessage());
-            }
-        }
-    }
-
-    /**
-     * Método que faz a atualização de pessoas na base de dados
-     *
-     * @param funcionario
-     */
-    public void atualizar(Funcionario funcionario) {
-        Connection conn = null;
-        if (funcionario != null) {
-            try {
-                conn = ConnectionFactory.getConnection();
-                PreparedStatement pstm = null;
-                pstm = ConnectionFactory.getConnection().prepareStatement(UPDATE);
-                //Pega os dados que estão no objeto passado por parametro
                 pstm.setString(1, funcionario.getCelular());
                 pstm.setString(2, funcionario.getCpf());
                 pstm.setString(3, funcionario.getCtps());
@@ -81,40 +52,87 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 pstm.setString(6, funcionario.getNome());
                 pstm.setString(7, funcionario.getRg());
                 pstm.setString(8, funcionario.getSenha());
-                pstm.setString(9, funcionario.getTelefone());
-                pstm.setInt(10, funcionario.getId_funcionario());
+                pstm.setString(9, funcionario.getSexo());
+                pstm.setString(10, funcionario.getTelefone());
+                pstm.setDate(11, new java.sql.Date(funcionario.getDataNasci().getTime()));
+
+
                 //Executa o comando sql
+
                 pstm.execute();
-                //Mensagem na tela
-                JOptionPane.showMessageDialog(null, "Funcionario foi atualizado com sucesso!");
-                //Fecha a conexão
+                JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso!");
                 ConnectionFactory.closeConnection(conn, pstm);
             } catch (SQLException e) {
-                System.out.println("Erro ao atualizar o funcionario no banco de dados\n" + e.getMessage());
+                System.out.println("Erro ao enserir pessoa no banco de dados\n" + e.getMessage());
             }
         }
     }
+    @Override
+    public int atualizar(Funcionario funcionario) {
+        Connection con = null;
+        PreparedStatement pstm = null;
+        int retorno = -1;
+        try {
+            con = ConnectionFactory.getConnection();
+            pstm = con.prepareStatement(UPDATE);
+            
+            //Pega os dados que estão no objeto passado por parametro
+                pstm.setString(1, funcionario.getCelular());
+                pstm.setString(2, funcionario.getCpf());
+                pstm.setString(3, funcionario.getCtps());
+                pstm.setString(4, funcionario.getEndereco());
+                pstm.setString(5, funcionario.getLogin());
+                pstm.setString(6, funcionario.getNome());
+                pstm.setString(7, funcionario.getRg());
+                pstm.setString(8, funcionario.getSenha());
+                pstm.setString(9, funcionario.getSexo());
+                pstm.setString(10, funcionario.getTelefone());
+                pstm.setDate(11, new java.sql.Date(funcionario.getDataNasci().getTime()));
+                pstm.setInt(12, funcionario.getId_funcionario());
+            //Executa o comando sql
+            pstm.execute();
+            retorno = funcionario.getId_funcionario();
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao editar os dados do Funcionário " + e.getMessage());
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(con, pstm);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão");
+            }
+        }
+        return retorno;
+    }
+
+    /**
+     * Método que faz a atualização de pessoas na base de dados
+     *
+     * @param funcionario
+     */
 
     @Override
-    public void remover(int id) {
-        Connection conn = null;
+    public boolean remover(int id) {
+        boolean status = false;
+        Connection con = null;
+        PreparedStatement pstm = null;
         try {
-            conn = ConnectionFactory.getConnection();
-            PreparedStatement pstm = null;
-            pstm = ConnectionFactory.getConnection().prepareStatement(DELETE);
-            String mensagem = "Você tem ceeza que deseja excluit este funcionario?";
-            String titulo = "Atenção!";
+            con = ConnectionFactory.getConnection();
+            pstm = con.prepareStatement(DELETE);
+            pstm.setInt(1, id);
+            pstm.execute();
+            status = true;
 
-            int condicao = JOptionPane.showConfirmDialog(null, mensagem, titulo, JOptionPane.YES_NO_OPTION);
-            if (condicao == JOptionPane.YES_OPTION) {
-                pstm.setInt(1, id);
-                pstm.execute();
-                JOptionPane.showMessageDialog(null, "O funcionario foi removido com sucesso!");
-                ConnectionFactory.closeConnection(conn, pstm);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Erro ao excluir " + e.getMessage());
+        } finally {
+            try {
+                ConnectionFactory.closeConnection(con, pstm);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão" + e.getMessage());
             }
-        } catch (SQLException e) {
-            System.out.println("Erro ao deletar o funcionario no banco de dados\n" + e.getMessage());
         }
+        return status;
     }
 
     @Override
@@ -130,7 +148,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
             while (rs.next()) {
                 Funcionario f = new Funcionario();
                 f.setCelular(rs.getString("celular"));
-                f.setConta(rs.getString("login"));
+                f.setLogin(rs.getString("login"));
                 f.setCpf(rs.getString("cpf"));
                 f.setCtps(rs.getString("ctps"));
                 f.setDataNasci(rs.getDate("dataNasci"));
@@ -151,7 +169,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     }
 
     @Override
-    public List<Funcionario> FuncionariobyNome(String nome) {
+    public List<Funcionario> getFuncionariobyNome(String nome) {
         Connection conn = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -164,7 +182,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
             while (rs.next()) {
                 Funcionario f = new Funcionario();
                 f.setCelular(rs.getString("celular"));
-                f.setConta(rs.getString("login"));
+                f.setLogin(rs.getString("login"));
                 f.setCpf(rs.getString("cpf"));
                 f.setCtps(rs.getString("ctps"));
                 f.setDataNasci(rs.getDate("dataNasci"));
@@ -174,7 +192,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setRg(rs.getString("rg"));
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
-                
+
                 funcionarios.add(f);
             }
         } catch (Exception e) {
@@ -192,20 +210,20 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     @Override
     public Funcionario getFuncionariobyId(int id) {
         Connection conn = null;
-        
+
         PreparedStatement pstm = null;
-        
+
         ResultSet rs = null;
-        
+
         Funcionario f = new Funcionario();
-        try{
+        try {
             conn = ConnectionFactory.getConnection();
             pstm = conn.prepareStatement(LIST_ID);
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 f.setCelular(rs.getString("celular"));
-                f.setConta(rs.getString("login"));
+                f.setLogin(rs.getString("login"));
                 f.setCpf(rs.getString("cpf"));
                 f.setCtps(rs.getString("ctps"));
                 f.setDataNasci(rs.getDate("dataNasci"));
@@ -217,15 +235,41 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setTelefone(rs.getString("telefone"));
             }
             ConnectionFactory.closeConnection(conn, pstm, rs);
-        } catch(SQLException e){
+        } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar pessoas: " + e.getMessage());
-        } finally{
-            try{
+        } finally {
+            try {
                 ConnectionFactory.closeConnection(conn, pstm, rs);
-            }catch(Exception e){
-                JOptionPane.showMessageDialog(null,"Erro ao fechar a conexão" + e.getMessage());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão" + e.getMessage());
             }
         }
         return f;
+    }
+
+    @Override
+    public boolean validaLogin(String login, String senha) {
+        boolean autenticado = false;
+
+        Connection conn = null;
+
+        PreparedStatement pstm = null;
+
+        ResultSet rs = null;
+        //Funcionario funcionarios = new Funcionario();
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(VERIFICALOGIN);
+            pstm.setString(1, login);
+            pstm.setString(2, senha);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+            ConnectionFactory.closeConnection(conn, pstm, rs);
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Erro ao validar login ou senha: " + e.getMessage());
+        }
+        return autenticado;
     }
 }

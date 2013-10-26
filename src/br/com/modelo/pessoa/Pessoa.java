@@ -9,10 +9,37 @@ public class Pessoa {
     private String rg;
     private String cpf;
     private String endereco;
-    private int id_pessoa;
+    private String sexo;
+    private int id;
+    
 
     public Pessoa() {
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public int getId_pessoa() {
+        return id_pessoa;
+    }
+
+    public void setId_pessoa(int id_pessoa) {
+        this.id_pessoa = id_pessoa;
+    }
+    private int id_pessoa;
 
     public String getEndereco() {
         return endereco;
@@ -74,6 +101,6 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", id=" + id_pessoa + ", telefone=" + telefone + ", celular=" + celular + '}';
+        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", sexo=" + sexo + ", id_pessoa=" + id_pessoa + ", telefone=" + telefone + ", celular=" + celular + '}';
     }
 }

@@ -12,17 +12,17 @@ import java.util.List;
  * @author guest01
  */
 public interface FuncionarioDAO {
-    
      void inserir(Funcionario funcionario);
      
-     void atualizar (Funcionario funcionario);
+     int atualizar (Funcionario funcionario);
      
-     void remover(int id);
+     boolean remover(int id);
      //type the list dont take parameters
      List<Funcionario> getfuncionario();
      
-     List<Funcionario> FuncionariobyNome(String nome);
+     List<Funcionario> getFuncionariobyNome(String nome);
      
      Funcionario getFuncionariobyId(int id);
+     
+     boolean validaLogin(String login, String senha);
     }
-

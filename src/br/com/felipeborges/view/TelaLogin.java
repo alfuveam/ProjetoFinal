@@ -5,6 +5,8 @@
 package br.com.felipeborges.view;
 
 import br.com.felipeborges.controller.FuncionarioController;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,6 +19,7 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -33,10 +36,9 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txLogin = new javax.swing.JTextField();
-        psSenha = new javax.swing.JPasswordField();
+        txSenha = new javax.swing.JPasswordField();
         brEntrar = new javax.swing.JButton();
         brSair = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,7 +87,7 @@ public class TelaLogin extends javax.swing.JFrame {
                                 .addComponent(brEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(brSair, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(psSenha))))
+                            .addComponent(txSenha))))
                 .addGap(56, 56, 56))
         );
         jPanel2Layout.setVerticalGroup(
@@ -98,7 +100,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(psSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(brEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -106,27 +108,19 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/br/com/felipeborges/imagens/Aspiraboo.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 845, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(230, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(228, 228, 228))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(37, 37, 37)
+                .addContainerGap(545, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -144,64 +138,41 @@ public class TelaLogin extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void brSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_brSairActionPerformed
-
-    private void brEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brEntrarActionPerformed
+    private void validarLogin(){
         FuncionarioController fc = new FuncionarioController();
         TelaPrincipal tp = new TelaPrincipal();
         
-        tp.setLocationRelativeTo(null);
-        tp.setExtendedState(tp.MAXIMIZED_BOTH);
-        tp.setVisible(true);
-        this.setVisible(false); 
+        String login = txLogin.getText();
+        String senha = new String(txSenha.getPassword());
+        
+        boolean resposta = fc.validaLogin(login, senha);
+        
+        if(resposta == true){
+            tp.setVisible(true);
+            JOptionPane.showMessageDialog(this,"Login realizado com sucesso!");
+            this.dispose();// ????
+        }else if(txLogin.getText().equals("") && new String(txSenha.getPassword()).equals("")){
+            JOptionPane.showMessageDialog(this, "Os compos não foram preenchidos!");
+        } else {
+            JOptionPane.showMessageDialog(this,"Login e Password incorretos!");
+        }
+    }
+    
+    private void brSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_brSairActionPerformed
+    private void brEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_brEntrarActionPerformed
+        validarLogin();
     }//GEN-LAST:event_brEntrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TelaLogin().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brEntrar;
     private javax.swing.JButton brSair;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField psSenha;
     private javax.swing.JTextField txLogin;
+    private javax.swing.JPasswordField txSenha;
     // End of variables declaration//GEN-END:variables
 }

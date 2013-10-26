@@ -1,7 +1,5 @@
 package br.com.modelo.pessoa;
 
-import java.util.Date;
-
 public class Funcionario extends Pessoa {
 
     private String ctps;
@@ -16,7 +14,7 @@ public class Funcionario extends Pessoa {
         return login;
     }
 
-    public void setConta(String login) {
+    public void setLogin(String login) {
         this.login = login;
     }
 
@@ -44,8 +42,10 @@ public class Funcionario extends Pessoa {
         this.id_funcionario = id_funcionario;
     }
 
-    @Override
-    public String toString() {
-        return "Funcionario{" + "ctps=" + ctps + '}';
+    public Funcionario(String ctps, String senha, String login, int id_funcionario) {
+        this.ctps = ctps;
+        this.senha = senha;
+        this.login = login;
+        this.id_funcionario = id_funcionario;
     }
 }
