@@ -4,7 +4,6 @@ import br.com.felipeborges.dao.FuncionarioDAO;
 import br.com.felipeborges.dao.FuncionarioDAOJDBC;
 import br.com.modelo.pessoa.Funcionario;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 public class FuncionarioController {
 

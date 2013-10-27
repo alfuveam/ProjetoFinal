@@ -185,15 +185,15 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         if (linhaSelecionada >= 0) {
             int idFuncionario = (int) tabela.getValueAt(linhaSelecionada, 0);
-            TelaEditarFuncionario ui = new TelaEditarFuncionario(modelo, linhaSelecionada, idFuncionario);
-            ui.setVisible(true);
+            TelaEditarFuncionario te = new TelaEditarFuncionario(modelo, linhaSelecionada, idFuncionario);
+            te.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
         }
     }//GEN-LAST:event_btEditarActionPerformed
 
     private void btInserirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirActionPerformed
-        TelaEditarFuncionario fc = new TelaEditarFuncionario(modelo);
+        TelaCadastroFuncionario fc = new TelaCadastroFuncionario(modelo);
         fc.setLocationRelativeTo(null);
         fc.setVisible(true);
     }//GEN-LAST:event_btInserirActionPerformed

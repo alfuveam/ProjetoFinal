@@ -37,6 +37,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     @Override
     public int salvar(Funcionario funcionario){
         if(funcionario.getId_funcionario() == 0){
+            JOptionPane.showMessageDialog(null, "Erro ao enserir:" +funcionario.getId_funcionario());                        
             return inserir(funcionario);
     }else{
             return atualizar(funcionario);
@@ -50,12 +51,12 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
      */
         
     public int inserir(Funcionario funcionario) {
-            Connection conn = null;
-            PreparedStatement pstm = null;            
-            int retorno = -1;
-            try {
-                conn = ConnectionFactory.getConnection();
-                pstm = ConnectionFactory.getConnection().prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
+        Connection conn = null;
+        PreparedStatement pstm = null;
+        int retorno = -1;
+        try {
+            conn = ConnectionFactory.getConnection();
+            pstm = conn.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
                 //Pega os dados que estão no objeto passado por parametro e coloca na instrução de retorno
                 pstm.setString(1, funcionario.getCelular());
                 pstm.setString(2, funcionario.getCpf());
@@ -68,12 +69,12 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 pstm.setString(9, funcionario.getSexo());
                 pstm.setString(10, funcionario.getTelefone());
                 pstm.setDate(11, new java.sql.Date(funcionario.getDataNasci().getTime()));
-
-
-                //Executa o comando sql
+                pstm.execute();
+                
                 try (ResultSet rs = pstm.getGeneratedKeys()){
                     if(rs.next()){
                         retorno = rs.getInt(1);
+                        
                     }
                 }
             } catch(Exception e){
@@ -84,11 +85,12 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 } catch(SQLException ex){
                 }
             }
+        JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");                
             return retorno;
         }
     
     
-        public int atualizar(Funcionario funcionario) {
+        private int atualizar(Funcionario funcionario) {
         Connection con = null;
         PreparedStatement pstm = null;
         int retorno = -1;
@@ -112,7 +114,6 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
             //Executa o comando sql
             pstm.execute();
             retorno = funcionario.getId_funcionario();
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao editar os dados do Funcionário " + e.getMessage());
         } finally {
@@ -263,7 +264,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
         } finally {
             try {
                 ConnectionFactory.closeConnection(conn, pstm, rs);
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Erro ao fechar a conexão" + e.getMessage());
             }
         }

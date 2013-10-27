@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface FuncionarioDAO {
      int salvar(Funcionario funcionario);
-
+     
      boolean remover(int id);
      //type the list dont take parameters
      List<Funcionario> getfuncionario();

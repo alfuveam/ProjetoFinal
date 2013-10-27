@@ -33,7 +33,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         initComponents();
         FuncionarioController fc = new FuncionarioController();
         Funcionario f = fc.buscarFuncionariobyId(idFuncionario);
-        tcCodigo.setText(Integer.toString(f.getId_funcionario()));
+        txCodigo.setText(Integer.toString(f.getId_funcionario()));
         txEnderecoFuncionario.setText(f.getEndereco());
         txCelularFuncionario.setText(f.getCelular());
         txCpfFuncionario.setText(f.getCpf());
@@ -43,12 +43,13 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txNomeFuncionario.setText(f.getNome());
         txRgFuncionario.setText(f.getRg());
         txSenhaFuncionario.setText(f.getSenha());
+  
         
-        if (f.getSexo().equals("Feminino")) {
-            rbFeminino.setSelected(true);
-        } else if (f.getSexo().equals("Masculino")) {
-            rbMasculino.setSelected(true);
-        }
+//        if (f.getSexo().equalsIgnoreCase("Feminino")) {
+//            boxSexo.setSelectedIndex(0);
+//        } else if (f.getSexo().equalsIgnoreCase("Masculino")) {
+//            boxSexo.setSelectedIndex(1);
+//        }
         
         txTelefoneFuncionario.setText(f.getTelefone());
         
@@ -83,17 +84,16 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txTelefoneFuncionario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txCelularFuncionario = new javax.swing.JTextField();
-        rbFeminino = new javax.swing.JRadioButton();
         txNomeFuncionario = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        rbMasculino = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txDataNascimentoFuncionario = new javax.swing.JFormattedTextField();
-        tcCodigo = new javax.swing.JTextField();
+        txCodigo = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        boxSexo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -135,11 +135,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
         jLabel10.setText("Celular.:");
 
-        rbFeminino.setText("Feminino");
-
         jLabel2.setText("Data de Nascimento");
-
-        rbMasculino.setText("Masculino");
 
         jLabel1.setText("Nome.:");
 
@@ -149,21 +145,27 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
 
         jLabel3.setText("CPF:");
 
-        txDataNascimentoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter()));
+        try {
+            txDataNascimentoFuncionario.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
         txDataNascimentoFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txDataNascimentoFuncionarioActionPerformed(evt);
             }
         });
 
-        tcCodigo.setEditable(false);
-        tcCodigo.addActionListener(new java.awt.event.ActionListener() {
+        txCodigo.setEditable(false);
+        txCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tcCodigoActionPerformed(evt);
+                txCodigoActionPerformed(evt);
             }
         });
 
         jLabel12.setText("Codigo.:");
+
+        boxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,26 +212,24 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addGap(18, 18, 18)
+                                    .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel11)
+                                        .addComponent(jLabel12))
+                                    .addGap(19, 19, 19)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txCodigo)
+                                        .addComponent(txNomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(rbFeminino)
-                                            .addGap(57, 57, 57)
-                                            .addComponent(rbMasculino))
-                                        .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                            .addComponent(boxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(177, 177, 177)))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btConfirmar)
                                 .addGap(80, 80, 80)
-                                .addComponent(btLimpar))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12))
-                                .addGap(19, 19, 19)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tcCodigo)
-                                    .addComponent(txNomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE))))
+                                .addComponent(btLimpar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -238,7 +238,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tcCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -246,10 +246,9 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                     .addComponent(txNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbFeminino)
-                    .addComponent(rbMasculino)
-                    .addComponent(jLabel11))
-                .addGap(5, 5, 5)
+                    .addComponent(jLabel11)
+                    .addComponent(boxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -326,28 +325,31 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         f.setNome(txNomeFuncionario.getText());
         f.setRg(txRgFuncionario.getText());
         f.setTelefone(txTelefoneFuncionario.getText());
-   
-        if (rbFeminino.isSelected()) {
-            f.setSexo("Feminino");
-        } else if (rbMasculino.isSelected()) {
-            f.setSexo("Masculino");
+        
+        if (!(txCodigo.getText().equals("")) || (txCodigo.getText().equals(null))) {
+            f.setId_funcionario(Integer.parseInt(txCodigo.getText()));
         }
+   
+        if (boxSexo.getSelectedIndex() == 0){
+            f.setSexo("Masculino");
+        } else if (boxSexo.getSelectedIndex() == 1){
+                f.setSexo("Feminino");
+            }
+        
         
         if(f.getId_funcionario() == 0){
         int id = fc.salvar(f);
         if (id > 0) {
-                modelo.addRow(new Object[]{f.getCelular(), f.getCpf(), f.getCtps(), f.getDataNasci(), f.getEndereco(), f.getLogin(), f.getSenha(),
-                    f.getNome(), f.getRg(), f.getSexo(), f.getTelefone()});
-                JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
-            
+            modelo.addRow(new Object[]{id, f.getNome(), f.getDataNasci(), f.getRg(), f.getCpf(), f.getSexo(), f.getCtps(),
+                    f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone()});
         }
         }else{
-                int id = fc.salvar(f);
-        if (id > 0) {
+          int id = fc.salvar(f);
+          if (id > 0) {
                 modelo.removeRow(linhaSelecionada);
-                modelo.addRow(new Object[]{f.getCelular(), f.getCpf(), f.getCtps(), f.getDataNasci(), f.getEndereco(), f.getLogin(), f.getSenha(),
-                    f.getNome(), f.getRg(), f.getSexo(), f.getTelefone()});
-                JOptionPane.showMessageDialog(null, "Usuário cadastrado com sucesso");
+                modelo.addRow(new Object[]{id, f.getNome(), f.getDataNasci(), f.getRg(), f.getCpf(), f.getSexo(), f.getCtps(),
+                f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone()});
+                JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso");                   
             }
         }
         fc.salvar(f);
@@ -365,8 +367,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txNomeFuncionario.setText("");
         txRgFuncionario.setText("");
         txTelefoneFuncionario.setText("");
-        rbFeminino.setSelected(false);
-        rbMasculino.setSelected(false);
+        boxSexo.setSelectedIndex(0);
+
 
     }//GEN-LAST:event_btLimparActionPerformed
 
@@ -374,11 +376,12 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txDataNascimentoFuncionarioActionPerformed
 
-    private void tcCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tcCodigoActionPerformed
+    private void txCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txCodigoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tcCodigoActionPerformed
+    }//GEN-LAST:event_txCodigoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox boxSexo;
     private javax.swing.JButton btConfirmar;
     private javax.swing.JButton btLimpar;
     private javax.swing.JLabel jLabel1;
@@ -394,10 +397,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JRadioButton rbFeminino;
-    private javax.swing.JRadioButton rbMasculino;
-    private javax.swing.JTextField tcCodigo;
     private javax.swing.JTextField txCelularFuncionario;
+    private javax.swing.JTextField txCodigo;
     private javax.swing.JTextField txCpfFuncionario;
     private javax.swing.JTextField txCtpsFuncionario;
     private javax.swing.JFormattedTextField txDataNascimentoFuncionario;

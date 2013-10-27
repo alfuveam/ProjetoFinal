@@ -59,12 +59,11 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         txTelefoneFuncionario = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txCelularFuncionario = new javax.swing.JTextField();
-        rbFeminino = new javax.swing.JRadioButton();
-        rbMasculino = new javax.swing.JRadioButton();
         jLabel11 = new javax.swing.JLabel();
         txLoginFuncionario = new javax.swing.JTextField();
         txEnderecoFuncionario = new javax.swing.JTextField();
         txDataNascimentoFuncionario = new javax.swing.JFormattedTextField();
+        boxSexo = new javax.swing.JComboBox();
 
         jTextField1.setText("jTextField1");
 
@@ -104,12 +103,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
 
         jLabel10.setText("Celular.:");
 
-        GrupoSexo.add(rbFeminino);
-        rbFeminino.setText("Feminino");
-
-        GrupoSexo.add(rbMasculino);
-        rbMasculino.setText("Masculino");
-
         jLabel11.setText("Sexo.:");
 
         try {
@@ -122,6 +115,8 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                 txDataNascimentoFuncionarioActionPerformed(evt);
             }
         });
+
+        boxSexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Masculino", "Feminino" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -168,26 +163,23 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                                     .addComponent(txCpfFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel11))
+                                    .addGap(24, 24, 24)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addGap(18, 18, 18)
-                                            .addComponent(rbFeminino)
-                                            .addGap(57, 57, 57)
-                                            .addComponent(rbMasculino))
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(boxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addGap(190, 190, 190)))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btConfirmar)
                                 .addGap(80, 80, 80)
-                                .addComponent(btLimpar))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel11))
-                                .addGap(24, 24, 24)
-                                .addComponent(txNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btLimpar)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -200,10 +192,9 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
                     .addComponent(txNomeFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbFeminino)
-                    .addComponent(rbMasculino)
-                    .addComponent(jLabel11))
-                .addGap(5, 5, 5)
+                    .addComponent(jLabel11)
+                    .addComponent(boxSexo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -294,28 +285,30 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
         f.setRg(txRgFuncionario.getText());
         f.setTelefone(txTelefoneFuncionario.getText());
         
-        if (rbFeminino.isSelected()) {
-            f.setSexo("Feminino");
-        } else if (rbMasculino.isSelected()) {
+        if (boxSexo.getSelectedIndex() == 0){
             f.setSexo("Masculino");
-        }
+        } else if (boxSexo.getSelectedIndex() == 1){
+                f.setSexo("Feminino");
+            }
+        
+        
   
         FuncionarioController fc = new FuncionarioController();
         int id = fc.salvar(f);
         if (id > 0) {
-                modelo.addRow(new Object[]{id, f.getCelular(), f.getCpf(), 
-                    f.getCtps(), f.getEndereco(),
-                    f.getLogin(),f.getNome(),f.getRg(), f.getSenha(),
-                    f.getSexo(), f.getTelefone(), f.getDataNasci()});
-                    JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");
+                modelo.addRow(new Object[]{id, f.getNome(), f.getDataNasci(), f.getRg(), f.getCpf(), f.getSexo(), f.getCtps(),
+                f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone()});
+                    JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso! Mensagem Tela Cadastro");
         }
     }//GEN-LAST:event_btConfirmarActionPerformed
 
     private void txDataNascimentoFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txDataNascimentoFuncionarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txDataNascimentoFuncionarioActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup GrupoSexo;
+    private javax.swing.JComboBox boxSexo;
     private javax.swing.JButton btConfirmar;
     private javax.swing.JButton btLimpar;
     private javax.swing.JLabel jLabel1;
@@ -333,8 +326,6 @@ public class TelaCadastroFuncionario extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSpinner jSpinner1;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JRadioButton rbFeminino;
-    private javax.swing.JRadioButton rbMasculino;
     private javax.swing.JTextField txCelularFuncionario;
     private javax.swing.JTextField txCpfFuncionario;
     private javax.swing.JTextField txCtpsFuncionario;

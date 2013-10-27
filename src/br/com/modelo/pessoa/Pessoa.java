@@ -10,18 +10,8 @@ public class Pessoa {
     private String cpf;
     private String endereco;
     private String sexo;
-    private int id;
-    
 
     public Pessoa() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
     
     public String getSexo() {
@@ -99,8 +89,15 @@ public class Pessoa {
         this.celular = celular;
     }
 
-    @Override
-    public String toString() {
-        return "Pessoa{" + "nome=" + nome + ", dataNasci=" + dataNasci + ", rg=" + rg + ", cpf=" + cpf + ", endereco=" + endereco + ", sexo=" + sexo + ", id_pessoa=" + id_pessoa + ", telefone=" + telefone + ", celular=" + celular + '}';
+    public Pessoa(String nome, Date dataNasci, String rg, String cpf, String endereco, String sexo, int id_pessoa, String telefone, String celular) {
+        this.nome = nome;
+        this.dataNasci = dataNasci;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.sexo = sexo;
+        this.id_pessoa = id_pessoa;
+        this.telefone = telefone;
+        this.celular = celular;
     }
 }
