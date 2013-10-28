@@ -14,7 +14,7 @@ import javax.swing.table.DefaultTableModel;
  * @author guest01
  */
 public class TelaPrincipal extends javax.swing.JFrame {
-
+ private DefaultTableModel modelo = new DefaultTableModel();
     /**
      * Creates new form TelaPrincipal
      */
@@ -44,11 +44,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmFuncionario = new javax.swing.JMenuItem();
-        jmPessoa = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         jmListarFuncionario = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jbFuncionario = new javax.swing.JMenuItem();
         txSair = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
 
@@ -91,9 +88,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jmFuncionario);
 
-        jmPessoa.setText("Pessoa");
-        jMenu1.add(jmPessoa);
-
         jMenuBar1.add(jMenu1);
 
         jMenu3.setText("Listar");
@@ -107,18 +101,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu3.add(jmListarFuncionario);
 
         jMenuBar1.add(jMenu3);
-
-        jMenu4.setText("Alterar");
-
-        jbFuncionario.setText("Funcionario");
-        jbFuncionario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbFuncionarioActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jbFuncionario);
-
-        jMenuBar1.add(jMenu4);
 
         txSair.setText("Sair");
         txSair.addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -134,10 +116,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         txSair.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
             public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
             }
-            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
-            }
             public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
                 txSairMenuKeyPressed(evt);
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
             }
         });
 
@@ -173,23 +155,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFuncionarioActionPerformed
-        TelaCadastroFuncionario tf = new TelaCadastroFuncionario(null);
+        TelaCadastroFuncionario tf = new TelaCadastroFuncionario(modelo);
         tf.setVisible(true);        
         tf.setLocationRelativeTo(null);
 
     }//GEN-LAST:event_jmFuncionarioActionPerformed
 
     private void jmListarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarFuncionarioActionPerformed
-        TelaRelatoriosFuncionario tr = new TelaRelatoriosFuncionario();
+        TelaRelatoriosFuncionario tr = new TelaRelatoriosFuncionario(modelo);
         tr.setVisible(true);
         tr.setLocationRelativeTo(null);
     }//GEN-LAST:event_jmListarFuncionarioActionPerformed
-
-    private void jbFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFuncionarioActionPerformed
-        TelaEditarFuncionario t = new TelaEditarFuncionario(null, 0, 0);
-        t.setVisible(true);
-        t.setLocationRelativeTo(null);
-    }//GEN-LAST:event_jbFuncionarioActionPerformed
 
     private void txSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txSairActionPerformed
 
@@ -212,7 +188,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
@@ -222,10 +197,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JMenuItem jbFuncionario;
     private javax.swing.JMenuItem jmFuncionario;
     private javax.swing.JMenuItem jmListarFuncionario;
-    private javax.swing.JMenuItem jmPessoa;
     private javax.swing.JMenu txSair;
     // End of variables declaration//GEN-END:variables
 }

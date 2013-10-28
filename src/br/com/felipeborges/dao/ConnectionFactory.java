@@ -19,7 +19,7 @@ public class ConnectionFactory {
     //Usuário
     private static final String USER = "root";
     //Senha
-    private static final String PASSWORD = "12345";
+    private static final String PASSWORD = "";
     //Base de dados
     private static final String DATABASE = "projetocobra";
 

@@ -20,12 +20,14 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
      * Creates new form TelaRelatoriosFuncionario
      */
     private JTable tabela;
-    private DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo;
 
-    public TelaRelatoriosFuncionario() {
+    public TelaRelatoriosFuncionario(DefaultTableModel modelo) {
         initComponents();
+        this.modelo = modelo;
         criaTabela();
         painelRolagem.setViewportView(tabela);
+        
     }
 
     /**
