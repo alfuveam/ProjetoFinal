@@ -23,15 +23,15 @@ import javax.swing.JOptionPane;
  */
 public class FuncionarioDAOJDBC implements FuncionarioDAO {
 
-    private final String INSERT = "insert into funcionario(celular, cpf, ctps, endereco, login, nome, rg, senha, sexo, telefone, dataNasci) values (?,?,?,?,?,?,?,?,?,?,?);";
-    private final String UPDATE = "update funcionario set celular = ?, cpf = ?, ctps = ?, endereco = ?, login = ?, nome = ?, rg = ?, senha = ?, sexo = ?, telefone = ?, dataNasci = ? where id_funcionario = ?";
+    private final String INSERT = "insert into funcionario(celular, cpf, ctps, endereco, login, nome, rg, senha, sexo, telefone, dataNasci, salario) values (?,?,?,?,?,?,?,?,?,?,?,?);";
+    private final String UPDATE = "update funcionario set celular = ?, cpf = ?, ctps = ?, endereco = ?, login = ?, nome = ?, rg = ?, senha = ?, sexo = ?, telefone = ?, dataNasci = ?, salario = ? where id_funcionario = ?";
     private final String DELETE = "delete from funcionario where id_funcionario = ?;";
     private final String LIST = "select * from Funcionario;";
     private final String LIST_NOME = "select * from funcionario where nome like ?";
     private final String LIST_ID = "select * from funcionario where id_funcionario = ?";
     private final String VERIFICALOGIN = "select login, senha from funcionario where login = ? and senha= ?";
-    private String LISTBYVARIABLE = "select * from ?;";
-     /**
+
+    /**
      * Método que faz a inserção de pessoas na base de dados
      * @param funcionario
      * @return
@@ -71,6 +71,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 pstm.setString(9, funcionario.getSexo());
                 pstm.setString(10, funcionario.getTelefone());
                 pstm.setDate(11, new java.sql.Date(funcionario.getDataNasci().getTime()));
+                pstm.setDouble(12, funcionario.getSalario());
                 pstm.execute();
                 
                 try (ResultSet rs = pstm.getGeneratedKeys()){
@@ -112,12 +113,13 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 pstm.setString(9, funcionario.getSexo());
                 pstm.setString(10, funcionario.getTelefone());
                 pstm.setDate(11, new java.sql.Date(funcionario.getDataNasci().getTime()));
-                pstm.setInt(12, funcionario.getId_funcionario());
+                pstm.setDouble(12, funcionario.getSalario());
+                pstm.setInt(13, funcionario.getId_funcionario());
             //Executa o comando sql
             pstm.execute();
             retorno = funcionario.getId_funcionario();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro ao editar os dados do Funcionário " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao editar os dados do Funcionário éé´´eéé " + e.getMessage());
         } finally {
             try {
                 ConnectionFactory.closeConnection(con, pstm);
@@ -184,6 +186,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
                 f.setSexo(rs.getString("sexo"));
+                f.setSalario(rs.getDouble("salario"));
 
                 funcionarios.add(f);
             }
@@ -224,6 +227,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
                 f.setSexo(rs.getString("sexo"));
+                f.setSalario(rs.getDouble("salario"));
                 
                 funcionarios.add(f);
             }
@@ -262,7 +266,8 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setRg(rs.getString("rg"));
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
-                f.setSexo(rs.getString("sexo"));                
+                f.setSexo(rs.getString("sexo"));   
+                f.setSalario(rs.getDouble("salario"));
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar o usuário" + e.getMessage());

@@ -21,13 +21,14 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
      */
     private JTable tabela;
     private DefaultTableModel modelo;
+    private boolean janelaaberta = false;
 
     public TelaRelatoriosFuncionario(DefaultTableModel modelo) {
         initComponents();
         this.modelo = modelo;
         criaTabela();
         painelRolagem.setViewportView(tabela);
-        
+
     }
 
     /**
@@ -208,7 +209,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         modelo.setNumRows(0);
         for (Funcionario c : fc.buscarFuncionariobyNome(nome)) {
             modelo.addRow(new Object[]{c.getId_funcionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
-                c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone()});
+                c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone(), c.getSalario()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -225,20 +226,25 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void criaTabela() {
+        
+        modelo = new DefaultTableModel();
+
         tabela = new JTable(modelo);
+        
         modelo.addColumn("Nr Funcionairo");
         modelo.addColumn("Nome");
         modelo.addColumn("Data Nascimento");
         modelo.addColumn("RG");
         modelo.addColumn("CPF");
-        modelo.addColumn("Sexo");        
+        modelo.addColumn("Sexo");
         modelo.addColumn("CTPS");
         modelo.addColumn("Login");
         modelo.addColumn("Senha");
         modelo.addColumn("Endereco");
         modelo.addColumn("Celular");
         modelo.addColumn("Telefone");
-        
+        modelo.addColumn("Salario");
+
         tabela.getColumnModel().getColumn(0).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(1).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(2).setPreferredWidth(40);
@@ -250,15 +256,20 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         tabela.getColumnModel().getColumn(8).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(9).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(10).setPreferredWidth(40);
-        tabela.getColumnModel().getColumn(10).setPreferredWidth(40);        
+        tabela.getColumnModel().getColumn(10).setPreferredWidth(40);
+        tabela.getColumnModel().getColumn(10).setPreferredWidth(40);
         preencherTabela();
+
     }
 
     private void preencherTabela() {
+
         FuncionarioController fc = new FuncionarioController();
         for (Funcionario c : fc.getFuncionario()) {
             modelo.addRow(new Object[]{c.getId_funcionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
-                c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone()});
+                c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone(), c.getSalario()});
         }
+
+
     }
 }

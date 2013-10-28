@@ -22,6 +22,7 @@ public class TelaLogin extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -43,6 +44,8 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Tela de Login");
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(844, 497));
@@ -59,6 +62,17 @@ public class TelaLogin extends javax.swing.JFrame {
         txLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txLoginActionPerformed(evt);
+            }
+        });
+        txLogin.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txLoginKeyPressed(evt);
+            }
+        });
+
+        txSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txSenhaKeyPressed(evt);
             }
         });
 
@@ -198,8 +212,8 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_brSairActionPerformed
 
     private void brEntrarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_brEntrarKeyPressed
-        int tecla=evt.getKeyCode();
-        if (tecla==KeyEvent.VK_ENTER) {
+        int tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_ENTER) {
             validarLogin();
             //Seu Codigo........
         }
@@ -210,32 +224,46 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_brEntrarActionPerformed
 
     private void brEntrarComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_brEntrarComponentShown
-
     }//GEN-LAST:event_brEntrarComponentShown
 
     private void txLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txLoginActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txLoginActionPerformed
-    private void validarLogin(){
+
+    private void txLoginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txLoginKeyPressed
+        int tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_ENTER) {
+            validarLogin();
+            //Seu Codigo........
+        }
+    }//GEN-LAST:event_txLoginKeyPressed
+
+    private void txSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txSenhaKeyPressed
+        int tecla = evt.getKeyCode();
+        if (tecla == KeyEvent.VK_ENTER) {
+            validarLogin();
+            //Seu Codigo........
+        }
+    }//GEN-LAST:event_txSenhaKeyPressed
+    private void validarLogin() {
         FuncionarioController fc = new FuncionarioController();
         TelaPrincipal tp = new TelaPrincipal();
-        
+
         String login = txLogin.getText();
         String senha = new String(txSenha.getPassword());
-        
+
         boolean resposta = fc.validaLogin(login, senha);
-        
-        if(resposta == true){
+
+        if (resposta == true) {
             tp.setVisible(true);
 //            JOptionPane.showMessageDialog(this,"Login realizado com sucesso!");
             this.dispose();// ????
-        }else if(txLogin.getText().equals("") && new String(txSenha.getPassword()).equals("")){
+        } else if (txLogin.getText().equals("") && new String(txSenha.getPassword()).equals("")) {
             JOptionPane.showMessageDialog(this, "Os compos não foram preenchidos!");
         } else {
-            JOptionPane.showMessageDialog(this,"Login e Password incorretos!");
+            JOptionPane.showMessageDialog(this, "Login e Password incorretos!");
         }
     }
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brEntrar;
     private javax.swing.JButton brSair;

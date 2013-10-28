@@ -56,6 +56,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         String data = sdf.format(f.getDataNasci());
         txDataNascimentoFuncionario.setText(data);
+        txSalario.setText(Double.toString(f.getSalario()));
         }
 
     /**
@@ -94,6 +95,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         txCtpsFuncionario = new javax.swing.JFormattedTextField();
         txTelefoneFuncionario = new javax.swing.JFormattedTextField();
         txCelularFuncionario = new javax.swing.JFormattedTextField();
+        txSalario = new javax.swing.JFormattedTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -197,6 +200,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
             ex.printStackTrace();
         }
 
+        jLabel13.setText("Salario.:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,7 +211,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                         .addComponent(txEnderecoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
                     .addGroup(layout.createSequentialGroup()
@@ -224,23 +229,6 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                                 .addGap(18, 18, 18)
                                 .addComponent(txDataNascimentoFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel6)
-                                        .addComponent(jLabel5)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txCpfFuncionario)
-                                        .addComponent(txRgFuncionario)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(txLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(txSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(txCtpsFuncionario)))
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel1)
@@ -252,7 +240,26 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                                         .addComponent(txNomeFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 353, Short.MAX_VALUE)
                                         .addGroup(layout.createSequentialGroup()
                                             .addComponent(boxSexo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(177, 177, 177)))))
+                                            .addGap(177, 177, 177))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(txSalario)
+                                        .addComponent(txCpfFuncionario)
+                                        .addComponent(txRgFuncionario)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(txLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                                            .addComponent(jLabel7)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(txSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txCtpsFuncionario))))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(83, 83, 83)
                                 .addComponent(btConfirmar)
@@ -263,8 +270,8 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -292,14 +299,16 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txCtpsFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txSalario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel13))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel6)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txLoginFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txSenhaFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)))
@@ -321,7 +330,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btConfirmar)
                     .addComponent(btLimpar))
-                .addGap(20, 20, 20))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -356,6 +365,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         f.setNome(txNomeFuncionario.getText());
         f.setRg(txRgFuncionario.getText());
         f.setTelefone(txTelefoneFuncionario.getText());
+        f.setSalario(Double.valueOf(txSalario.getText()));
         
         if (!(txCodigo.getText().equals("")) || (txCodigo.getText().equals(null))) {
             f.setId_funcionario(Integer.parseInt(txCodigo.getText()));
@@ -372,14 +382,14 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
         int id = fc.salvar(f);
         if (id > 0) {
             modelo.addRow(new Object[]{id, f.getNome(), f.getDataNasci(), f.getRg(), f.getCpf(), f.getSexo(), f.getCtps(),
-                    f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone()});
+                    f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone(), f.getSalario()});
         }
         }else{
           int id = fc.salvar(f);
           if (id > 0) {
                 modelo.removeRow(linhaSelecionada);
                 modelo.addRow(new Object[]{id, f.getNome(), f.getDataNasci(), f.getRg(), f.getCpf(), f.getSexo(), f.getCtps(),
-                f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone()});
+                f.getLogin(), f.getSenha(), f.getEndereco(), f.getCelular(), f.getTelefone(), f.getSalario()});
                 JOptionPane.showMessageDialog(null, "Funcionario atualizado com sucesso");                   
             }
         }
@@ -419,6 +429,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -437,6 +448,7 @@ public class TelaEditarFuncionario extends javax.swing.JFrame {
     private javax.swing.JTextField txLoginFuncionario;
     private javax.swing.JTextField txNomeFuncionario;
     private javax.swing.JFormattedTextField txRgFuncionario;
+    private javax.swing.JFormattedTextField txSalario;
     private javax.swing.JTextField txSenhaFuncionario;
     private javax.swing.JFormattedTextField txTelefoneFuncionario;
     // End of variables declaration//GEN-END:variables

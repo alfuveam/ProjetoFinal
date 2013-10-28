@@ -6,6 +6,15 @@ public class Funcionario extends Pessoa {
     private String senha;
     private String login;
     private int id_funcionario;
+    private Double salario;
+
+    public Double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(Double salario) {
+        this.salario = salario;
+    }
 
     public Funcionario() {
     }
@@ -42,10 +51,11 @@ public class Funcionario extends Pessoa {
         this.id_funcionario = id_funcionario;
     }
 
-    public Funcionario(String ctps, String senha, String login, int id_funcionario) {
+    public Funcionario(String ctps, String senha, String login, int id_funcionario, Double salario) {
         this.ctps = ctps;
         this.senha = senha;
         this.login = login;
         this.id_funcionario = id_funcionario;
+        this.salario = salario;
     }
 }
