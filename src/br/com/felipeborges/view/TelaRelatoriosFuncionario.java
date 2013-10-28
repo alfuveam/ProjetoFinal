@@ -48,7 +48,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         txPesquisar = new javax.swing.JTextField();
         painelRolagem = new javax.swing.JScrollPane();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -146,7 +146,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(painelRolagem, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -160,7 +160,9 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -241,12 +243,12 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         tabela.getColumnModel().getColumn(3).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(4).setPreferredWidth(30);
         tabela.getColumnModel().getColumn(5).setPreferredWidth(30);
-        tabela.getColumnModel().getColumn(6).setPreferredWidth(20);
-        tabela.getColumnModel().getColumn(7).setPreferredWidth(20);
+        tabela.getColumnModel().getColumn(6).setPreferredWidth(40);
+        tabela.getColumnModel().getColumn(7).setPreferredWidth(40);
         tabela.getColumnModel().getColumn(8).setPreferredWidth(40);
-        tabela.getColumnModel().getColumn(9).setPreferredWidth(20);
-        tabela.getColumnModel().getColumn(10).setPreferredWidth(20);
-        tabela.getColumnModel().getColumn(10).setPreferredWidth(20);        
+        tabela.getColumnModel().getColumn(9).setPreferredWidth(40);
+        tabela.getColumnModel().getColumn(10).setPreferredWidth(40);
+        tabela.getColumnModel().getColumn(10).setPreferredWidth(40);        
         preencherTabela();
     }
 

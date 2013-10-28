@@ -4,11 +4,14 @@ package br.com.felipeborges.dao;
 import br.com.modelo.pessoa.Funcionario;
 import java.util.List;
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 
@@ -27,7 +30,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     private final String LIST_NOME = "select * from funcionario where nome like ?";
     private final String LIST_ID = "select * from funcionario where id_funcionario = ?";
     private final String VERIFICALOGIN = "select login, senha from funcionario where login = ? and senha= ?";
-
+    private String LISTBYVARIABLE = "select * from ?;";
      /**
      * Método que faz a inserção de pessoas na base de dados
      * @param funcionario
@@ -37,7 +40,6 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
     @Override
     public int salvar(Funcionario funcionario){
         if(funcionario.getId_funcionario() == 0){
-            JOptionPane.showMessageDialog(null, "Erro ao enserir:" +funcionario.getId_funcionario());                        
             return inserir(funcionario);
     }else{
             return atualizar(funcionario);
@@ -85,7 +87,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 } catch(SQLException ex){
                 }
             }
-        JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");                
+//        JOptionPane.showMessageDialog(null, "Funcionario cadastrado com sucesso");                
             return retorno;
         }
     
@@ -181,6 +183,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setRg(rs.getString("rg"));
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
+                f.setSexo(rs.getString("sexo"));
 
                 funcionarios.add(f);
             }
@@ -220,7 +223,8 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setRg(rs.getString("rg"));
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
-
+                f.setSexo(rs.getString("sexo"));
+                
                 funcionarios.add(f);
             }
         } catch (Exception e) {
@@ -258,6 +262,7 @@ public class FuncionarioDAOJDBC implements FuncionarioDAO {
                 f.setRg(rs.getString("rg"));
                 f.setSenha(rs.getString("senha"));
                 f.setTelefone(rs.getString("telefone"));
+                f.setSexo(rs.getString("sexo"));                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao listar o usuário" + e.getMessage());

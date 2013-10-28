@@ -4,6 +4,9 @@
  */
 package br.com.felipeborges.view;
 
+import java.awt.event.WindowEvent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,9 +20,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        setLocationRelativeTo(null);
-
+        setExtendedState(MAXIMIZED_BOTH);
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,6 +33,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu2 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -39,9 +49,24 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jmListarFuncionario = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jbFuncionario = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        txSair = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenu2.setText("File");
+        jMenuBar2.add(jMenu2);
+
+        jMenu5.setText("Edit");
+        jMenuBar2.add(jMenu5);
+
+        jMenu6.setText("jMenu6");
+
+        jMenuItem3.setText("jMenuItem3");
+
+        jMenuItem4.setText("jMenuItem4");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -53,6 +78,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 343, Short.MAX_VALUE)
         );
+
+        jMenuBar1.setBackground(new java.awt.Color(204, 204, 204));
 
         jMenu1.setText("Cadastro");
 
@@ -93,8 +120,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu4);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        txSair.setText("Sair");
+        txSair.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                txSairComponentResized(evt);
+            }
+        });
+        txSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txSairActionPerformed(evt);
+            }
+        });
+        txSair.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
+            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
+            }
+            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
+                txSairMenuKeyPressed(evt);
+            }
+        });
+
+        jMenuItem2.setText("Sair");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        txSair.add(jMenuItem2);
+
+        jMenuBar1.add(txSair);
 
         setJMenuBar(jMenuBar1);
 
@@ -109,19 +164,25 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        jPanel1.getAccessibleContext().setAccessibleName("");
+        jPanel1.getAccessibleContext().setAccessibleDescription("");
+
+        getAccessibleContext().setAccessibleName("Ola");
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmFuncionarioActionPerformed
         TelaCadastroFuncionario tf = new TelaCadastroFuncionario(null);
+        tf.setVisible(true);        
         tf.setLocationRelativeTo(null);
-        tf.setVisible(true);
 
     }//GEN-LAST:event_jmFuncionarioActionPerformed
 
     private void jmListarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmListarFuncionarioActionPerformed
         TelaRelatoriosFuncionario tr = new TelaRelatoriosFuncionario();
         tr.setVisible(true);
+        tr.setLocationRelativeTo(null);
     }//GEN-LAST:event_jmListarFuncionarioActionPerformed
 
     private void jbFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbFuncionarioActionPerformed
@@ -129,16 +190,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
         t.setVisible(true);
         t.setLocationRelativeTo(null);
     }//GEN-LAST:event_jbFuncionarioActionPerformed
+
+    private void txSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txSairActionPerformed
+
+    }//GEN-LAST:event_txSairActionPerformed
+
+    private void txSairComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_txSairComponentResized
+        
+    }//GEN-LAST:event_txSairComponentResized
+
+    private void txSairMenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_txSairMenuKeyPressed
+
+    }//GEN-LAST:event_txSairMenuKeyPressed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        System.exit(0);
+        JOptionPane.showMessageDialog(null, "Evento sair");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jbFuncionario;
     private javax.swing.JMenuItem jmFuncionario;
     private javax.swing.JMenuItem jmListarFuncionario;
     private javax.swing.JMenuItem jmPessoa;
+    private javax.swing.JMenu txSair;
     // End of variables declaration//GEN-END:variables
 }
