@@ -2,7 +2,7 @@ package br.com.felipeborges.controller;
 
 import br.com.felipeborges.dao.FuncionarioDAO;
 import br.com.felipeborges.dao.FuncionarioDAOJDBC;
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Funcionario;
 import java.util.List;
 
 public class FuncionarioController {

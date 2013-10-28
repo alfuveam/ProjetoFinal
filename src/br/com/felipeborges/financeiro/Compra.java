@@ -1,8 +1,8 @@
-package br.com.modelo.financeiro;
+package br.com.felipeborges.financeiro;
 
-import br.com.modelo.pessoa.Cliente;
-import br.com.modelo.pessoa.Fornecedor;
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Cliente;
+import br.com.felipeborges.pessoa.Fornecedor;
+import br.com.felipeborges.pessoa.Funcionario;
 
 public class Compra {
 

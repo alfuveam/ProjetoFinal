@@ -1,4 +1,4 @@
-package br.com.modelo.pessoa;
+package br.com.felipeborges.pessoa;
 
 import java.util.Date;
 

@@ -1,7 +1,7 @@
 //Pacotes
 package br.com.felipeborges.dao;
 //Impotações
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Funcionario;
 import java.util.List;
 import java.sql.Connection;
 

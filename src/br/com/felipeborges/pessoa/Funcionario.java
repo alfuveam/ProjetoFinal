@@ -1,4 +1,4 @@
-package br.com.modelo.pessoa;
+package br.com.felipeborges.pessoa;
 
 public class Funcionario extends Pessoa {
 

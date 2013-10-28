@@ -1,4 +1,4 @@
-package br.com.modelo.financeiro;
+package br.com.felipeborges.financeiro;
 
 import java.util.Date;
 

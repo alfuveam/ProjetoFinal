@@ -1,6 +1,6 @@
-package br.com.modelo.pessoa;
+package br.com.felipeborges.pessoa;
 
-import br.com.modelo.financeiro.ContaCorrente;
+import br.com.felipeborges.financeiro.ContaCorrente;
 import java.util.Date;
 
 public class Cliente extends Pessoa {

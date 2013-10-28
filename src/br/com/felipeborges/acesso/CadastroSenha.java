@@ -1,5 +1,5 @@
 
-package br.com.acesso;
+package br.com.felipeborges.acesso;
 
 public class CadastroSenha {
     private String senha;

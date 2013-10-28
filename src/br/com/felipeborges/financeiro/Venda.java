@@ -1,6 +1,6 @@
-package br.com.modelo.financeiro;
+package br.com.felipeborges.financeiro;
 
-import br.com.modelo.pessoa.Pessoa;
+import br.com.felipeborges.pessoa.Pessoa;
 
 public class Venda {
 

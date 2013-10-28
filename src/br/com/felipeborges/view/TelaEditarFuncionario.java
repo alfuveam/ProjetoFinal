@@ -5,7 +5,7 @@
 package br.com.felipeborges.view;
 
 import br.com.felipeborges.controller.FuncionarioController;
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Funcionario;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;

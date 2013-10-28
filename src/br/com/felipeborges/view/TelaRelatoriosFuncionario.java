@@ -5,7 +5,7 @@
 package br.com.felipeborges.view;
 
 import br.com.felipeborges.controller.FuncionarioController;
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Funcionario;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;

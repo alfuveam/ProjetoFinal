@@ -1,4 +1,4 @@
-package br.com.modelo.produtos;
+package br.com.felipeborges.produtos;
 
 public class Aviamentos {
 

@@ -4,7 +4,7 @@
  */
 package br.com.felipeborges.dao;
 
-import br.com.modelo.pessoa.Funcionario;
+import br.com.felipeborges.pessoa.Funcionario;
 import java.util.List;
 
 /**
