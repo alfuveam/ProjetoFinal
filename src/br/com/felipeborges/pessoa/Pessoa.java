@@ -1,17 +1,111 @@
 package br.com.felipeborges.pessoa;
 
+import br.com.felipeborges.model.Cidade;
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@MappedSuperclass
 public class Pessoa {
-
+   
     private String nome;
+    @Temporal (TemporalType.DATE)
     private Date dataNasci;
     private String rg;
     private String cpf;
-    private String endereco;
     private String sexo;
+    private String email;
+    private String homePage;
+    private String fax;
+    private String uf;
+    private String enderecoProximo;
+    private String endereco;
+    private String telefone;
+    private String celular;
+   
+    @ManyToOne
+    private Cidade cidade;
+    private String pais;
+    private String cep;
+
+    public String getCep() {
+        return cep;
+    }
+
+    public void setCep(String cep) {
+        this.cep = cep;
+    }
+
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
+    }
+
+    public String getPais() {
+        return pais;
+    }
+
+    public void setPais(String pais) {
+        this.pais = pais;
+    }
+
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
     public Pessoa() {
+    }
+    
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getHomePage() {
+        return homePage;
+    }
+
+    public void setHomePage(String homePage) {
+        this.homePage = homePage;
+    }
+
+    public String getFax() {
+        return fax;
+    }
+
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
+
+    public String getUf() {
+        return uf;
+    }
+
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    public String getEnderecoProximo() {
+        return enderecoProximo;
+    }
+
+    public void setEnderecoProximo(String enderecoProximo) {
+        this.enderecoProximo = enderecoProximo;
     }
     
     public String getSexo() {
@@ -21,25 +115,6 @@ public class Pessoa {
     public void setSexo(String sexo) {
         this.sexo = sexo;
     }
-
-    public int getId_pessoa() {
-        return id_pessoa;
-    }
-
-    public void setId_pessoa(int id_pessoa) {
-        this.id_pessoa = id_pessoa;
-    }
-    private int id_pessoa;
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-    private String telefone;
-    private String celular;
 
     public String getNome() {
         return nome;
@@ -89,15 +164,5 @@ public class Pessoa {
         this.celular = celular;
     }
 
-    public Pessoa(String nome, Date dataNasci, String rg, String cpf, String endereco, String sexo, int id_pessoa, String telefone, String celular) {
-        this.nome = nome;
-        this.dataNasci = dataNasci;
-        this.rg = rg;
-        this.cpf = cpf;
-        this.endereco = endereco;
-        this.sexo = sexo;
-        this.id_pessoa = id_pessoa;
-        this.telefone = telefone;
-        this.celular = celular;
-    }
+    
 }

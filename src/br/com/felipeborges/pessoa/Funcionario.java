@@ -1,11 +1,26 @@
 package br.com.felipeborges.pessoa;
 
-public class Funcionario extends Pessoa {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+public class Funcionario extends Pessoa {
+    
+    @Id
+    @GeneratedValue
+    private int idFuncionario;
+
+    public int getIdFuncionario() {
+        return idFuncionario;
+    }
+
+    public void setIdFuncionario(int idFuncionario) {
+        this.idFuncionario = idFuncionario;
+    }
     private String ctps;
     private String senha;
     private String login;
-    private int id_funcionario;
     private Double salario;
 
     public Double getSalario() {
@@ -43,19 +58,15 @@ public class Funcionario extends Pessoa {
         this.senha = senha;
     }
 
-    public int getId_funcionario() {
-        return id_funcionario;
-    }
-
-    public void setId_funcionario(int id_funcionario) {
-        this.id_funcionario = id_funcionario;
-    }
-
     public Funcionario(String ctps, String senha, String login, int id_funcionario, Double salario) {
         this.ctps = ctps;
         this.senha = senha;
         this.login = login;
-        this.id_funcionario = id_funcionario;
         this.salario = salario;
+    }
+
+    @Override
+    public String toString() {
+        return "Funcionario{" + "idFuncionario=" + idFuncionario + ", ctps=" + ctps + ", senha=" + senha + ", login=" + login + ", salario=" + salario + '}';
     }
 }

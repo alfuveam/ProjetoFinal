@@ -1,24 +1,65 @@
 package br.com.felipeborges.produtos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Roupa {
 
-    private double tamanhoNum;
+    @Id
+    @GeneratedValue
+    private int idRoupa;
+    private String nomeRoupa;
+    private double valorUnitario;
+    private int quant;
+    private String tamanhoEUA; // Para inserir depois
     private String tamanhoLetra;
     private String modeloRoupa;
     private String tipoModelo; //Moda Homen,Feminina,Infantil
-    private int quant;
-    private int id;
+    private String descricaoRoupa;
+
+    public String getNomeRoupa() {
+        return nomeRoupa;
+    }
+
+    public void setNomeRoupa(String nomeRoupa) {
+        this.nomeRoupa = nomeRoupa;
+    }
+
+    public double getValorUnitario() {
+        return valorUnitario;
+    }
+
+    public void setValorUnitario(double valorUnitario) {
+        this.valorUnitario = valorUnitario;
+    }
+
+    public String getDescricaoRoupa() {
+        return descricaoRoupa;
+    }
+
+    public void setDescricaoRoupa(String descricaoRoupa) {
+        this.descricaoRoupa = descricaoRoupa;
+    }
+
+    public int getIdRoupa() {
+        return idRoupa;
+    }
+
+    public void setIdRoupa(int idRoupa) {
+        this.idRoupa = idRoupa;
+    }
 
     public Roupa() {
-        
     }
 
-    public int getId() {
-        return id;
+    public int getidRoupa() {
+        return idRoupa;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setidRoupa(int id) {
+        this.idRoupa = id;
     }
 
     public int getQuant() {
@@ -38,12 +79,12 @@ public class Roupa {
     }
     private String nome;
 
-    public double getTamanhoNum() {
-        return tamanhoNum;
+    public String getTamanhoEUA() {
+        return tamanhoEUA;
     }
 
-    public void setTamanhoNum(double tamanhoNum) {
-        this.tamanhoNum = tamanhoNum;
+    public void setTamanhoNum(String tamanhoEUA) {
+        this.tamanhoEUA = tamanhoEUA;
     }
 
     public String getTamanhoLetra() {
@@ -72,6 +113,6 @@ public class Roupa {
 
     @Override
     public String toString() {
-        return "Roupa{" + "tamanhoNum=" + tamanhoNum + ", tamanhoLetra=" + tamanhoLetra + ", modeloRoupa=" + modeloRoupa + ", tipoModelo=" + tipoModelo + ", quant=" + quant + ", id=" + id + ", nome=" + nome + '}';
+        return "Roupa{" + "tamanho Roupa EUA=" + tamanhoEUA + ", tamanhoLetra=" + tamanhoLetra + ", modeloRoupa=" + modeloRoupa + ", tipoModelo=" + tipoModelo + ", quant=" + quant + ", id=" + idRoupa + ", nome=" + nome + '}';
     }
 }

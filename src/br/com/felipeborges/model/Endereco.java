@@ -1,10 +1,13 @@
 
 package br.com.felipeborges.model;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author Felipe Borges Tomaz
  */
+
 public class Endereco {
     private String rua;
     private String cep;

@@ -1,14 +1,22 @@
 package br.com.felipeborges.produtos;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class MateriaPrima {
 
     private String modelo;
     private int quantidade;
     private String cor;
     private double tamanho;
+    @Temporal(TemporalType.TIMESTAMP)
     private Date horaEntrada;
+    @Id @GeneratedValue
     private int id;
 
     public MateriaPrima() {

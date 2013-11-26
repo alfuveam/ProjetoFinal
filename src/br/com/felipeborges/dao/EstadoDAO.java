@@ -13,37 +13,6 @@ import java.util.List;
  *
  * @author Felipe
  */
-public interface EstadoDAO {
-    /**
-     * Método para inserir um novo estado no banco de dados
-     * @param estado 
-     */
-    void inserir(Estado estado);
-    /**
-     * 
-     * @param estado 
-     */
-    void atualizar(Estado estado);
-    /**
-     * 
-     * @param id 
-     */
-    void remover(int id);
-    /**
-     * 
-     * @return 
-     */
-    List<Estado> getEstado();
-    /**
-     * 
-     * @param nome
-     * @return 
-     */
-    List<Estado> getEstadobyNome(String nome);
-    /**
-     * 
-     * @param id
-     * @return 
-     */
-    Estado getEstadobtId(int id);
+public interface EstadoDAO extends DAO<Estado, Integer>{
+
 }

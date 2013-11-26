@@ -1,11 +1,18 @@
 
 package br.com.felipeborges.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
 /**
  *
  * @author Felipe Borges Tomaz
  */
+@Entity
 public class Pais {
+    @Id @GeneratedValue
+    private int id;
     private String nome;
     private String sigla;
 
@@ -33,4 +40,14 @@ public class Pais {
     public void setNome(String nome) {
         this.nome = nome;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 }

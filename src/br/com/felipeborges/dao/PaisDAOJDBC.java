@@ -12,12 +12,5 @@ import br.com.felipeborges.model.Pais;
  */
 public class PaisDAOJDBC implements PaisDAO {
 
-    private static final String INSERT = "insert into pais (nome, sigla) values (?,?);";
-    private static final String DELETE = "delete from pais where id_pais = ?";
-    private static final String UPDATE = "update pais set nome = ?, sigla = ?/;";
 
-    @Override
-    public int salvar(Pais p) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

@@ -1,23 +1,23 @@
 package br.com.felipeborges.financeiro;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+
+@MappedSuperclass
 public class Conta {
 
     private String nomeBanco;
     private String nConta;
     private String nAgencia;
     private String nDigito;
-    private int id;
+    
 
     public Conta() {
     }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getNomeBanco() {
         return nomeBanco;
@@ -51,8 +51,5 @@ public class Conta {
         this.nDigito = nDigito;
     }
 
-    @Override
-    public String toString() {
-        return "Conta{" + "nomeBanco=" + nomeBanco + ", nConta=" + nConta + ", nAgencia=" + nAgencia + ", nDigito=" + nDigito + ", id=" + id + '}';
-    }
+  
 }

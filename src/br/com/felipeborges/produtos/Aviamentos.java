@@ -1,10 +1,16 @@
 package br.com.felipeborges.produtos;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Aviamentos {
 
     private int quantidade;
     private String modelo;
     private String nome;
+    @Id @GeneratedValue
     private int id;
 
     public Aviamentos() {

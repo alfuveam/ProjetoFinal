@@ -4,6 +4,7 @@
  */
 package br.com.felipeborges.app;
 
+import br.com.felipeborges.view.TelaCadastroFuncionario;
 import br.com.felipeborges.view.TelaLogin;
 
 /**
@@ -15,7 +16,6 @@ public class Principal {
     public static void main(String[] args) {
 
         new TelaLogin().setVisible(true);
-        new TelaLogin().setLocationRelativeTo(null);
-
+        //new TelaCadastroFuncionario(null);
     }
 }

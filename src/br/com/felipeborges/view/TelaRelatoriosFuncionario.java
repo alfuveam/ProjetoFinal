@@ -52,6 +52,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         painelRolagem = new javax.swing.JScrollPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Relatorios Funcionario");
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -190,7 +191,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         linhaSelecionada = tabela.getSelectedRow();
         if (linhaSelecionada >= 0) {
             int idFuncionario = (int) tabela.getValueAt(linhaSelecionada, 0);
-            TelaEditarFuncionario te = new TelaEditarFuncionario(modelo, linhaSelecionada, idFuncionario);
+            TelaCadastroFuncionario te = new TelaCadastroFuncionario(modelo, linhaSelecionada, idFuncionario);
             te.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Nenhuma linha foi selecionada.");
@@ -208,7 +209,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
         FuncionarioController fc = new FuncionarioController();
         modelo.setNumRows(0);
         for (Funcionario c : fc.buscarFuncionariobyNome(nome)) {
-            modelo.addRow(new Object[]{c.getId_funcionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
+            modelo.addRow(new Object[]{c.getIdFuncionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
                 c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone(), c.getSalario()});
         }
     }//GEN-LAST:event_txPesquisarActionPerformed
@@ -266,7 +267,7 @@ public class TelaRelatoriosFuncionario extends javax.swing.JFrame {
 
         FuncionarioController fc = new FuncionarioController();
         for (Funcionario c : fc.getFuncionario()) {
-            modelo.addRow(new Object[]{c.getId_funcionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
+            modelo.addRow(new Object[]{c.getIdFuncionario(), c.getNome(), c.getDataNasci(), c.getRg(), c.getCpf(), c.getSexo(), c.getCtps(),
                 c.getLogin(), c.getSenha(), c.getEndereco(), c.getCelular(), c.getTelefone(), c.getSalario()});
         }
 

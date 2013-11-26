@@ -3,13 +3,27 @@ package br.com.felipeborges.financeiro;
 import br.com.felipeborges.pessoa.Cliente;
 import br.com.felipeborges.pessoa.Fornecedor;
 import br.com.felipeborges.pessoa.Funcionario;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
+@Entity
 public class Compra {
 
+    @Id
+    @GeneratedValue
+    private int id;
+    @ManyToOne
     private Cheque cheque;
+   
+    @ManyToOne
     private ContaCorrente contaCorrente;
+    @ManyToOne
     private Cliente cliente;
+    @ManyToOne
     private Fornecedor fornecedor;
+    @ManyToOne
     private Funcionario funcionario;
 
     public Compra() {

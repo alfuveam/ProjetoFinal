@@ -1,11 +1,19 @@
-
 package br.com.felipeborges.model;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 /**
  *
  * @author Felipe
  */
+@Entity
 public class Estado {
+
+    @Id
+    @GeneratedValue
+    private int id;
     private String nome;
     private String sigla;
 
@@ -24,6 +32,4 @@ public class Estado {
     public void setSigla(String sigla) {
         this.sigla = sigla;
     }
-    
-    
 }

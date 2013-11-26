@@ -5,7 +5,6 @@
 package br.com.felipeborges.view;
 
 import br.com.felipeborges.controller.FuncionarioController;
-import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
@@ -264,6 +263,7 @@ public class TelaLogin extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Login e Password incorretos!");
         }
     }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton brEntrar;
     private javax.swing.JButton brSair;

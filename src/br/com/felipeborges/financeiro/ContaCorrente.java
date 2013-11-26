@@ -1,24 +1,27 @@
 package br.com.felipeborges.financeiro;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class ContaCorrente extends Conta {
-
+    @Id @GeneratedValue
+    private int id;
     private String nome; //É para verificar no banco de dados os valores armazenados
     private String valor;
+    @Temporal (TemporalType.DATE)
     private Date dataPagamento;
-    private int id;
+
 
     public ContaCorrente() {
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
+   
 
     public String getNome() {
         return nome;
@@ -44,8 +47,4 @@ public class ContaCorrente extends Conta {
         this.dataPagamento = dataPagamento;
     }
 
-    @Override
-    public String toString() {
-        return "ContaCorrente{" + "nome=" + nome + ", valor=" + valor + ", dataPagamento=" + dataPagamento + ", id=" + id + '}';
-    }
 }

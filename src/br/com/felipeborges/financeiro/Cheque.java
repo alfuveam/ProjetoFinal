@@ -1,12 +1,20 @@
 package br.com.felipeborges.financeiro;
 
 import java.util.Date;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
+@Entity
 public class Cheque {
 
     private String nome;
+    @Temporal(TemporalType.DATE)
     private Date dataAberturaConta;
     private String numeroCheque;
+    @Id @GeneratedValue
     private int id;
 
     public Cheque() {

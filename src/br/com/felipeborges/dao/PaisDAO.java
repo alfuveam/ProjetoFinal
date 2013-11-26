@@ -11,5 +11,5 @@ import br.com.felipeborges.model.Pais;
  * @author guest01
  */
 public interface PaisDAO {
-    int salvar (Pais p);
+    
 }
